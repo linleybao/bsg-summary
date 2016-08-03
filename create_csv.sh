@@ -1,5 +1,6 @@
 #!/bin/bash
-##version 0.0.7
+##version 0.0.8 
+##date 2016年 8月 3日 星期三 13时44分17秒 CST
 
 check_details (){
 	local s_file=/tmp/check.tmp
