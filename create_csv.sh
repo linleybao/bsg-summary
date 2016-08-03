@@ -38,6 +38,7 @@ create_head (){
 	csv_format "Mem Used"
 	csv_format "Mounted Filesystems"
 	csv_format "RAID Level"
+	csv_format "Multipath Status"
 	csv_format "Eth Link Status"
 	csv_format "Bond Status"
 	csv_format "Network Connections"
@@ -65,6 +66,7 @@ insert_data (){
 	memused=`grep -E "Used\ \|" $input_file | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
 	mountfs=`awk 'BEGIN{RS="# ";ORS="# "} /Mounted\ Filesystems/' $input_file  | grep -vE "Mounted|^#" | awk '{print $6 "    ," $3}' | grep -v "Mountpoint" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
 	raid_level=`awk 'BEGIN{RS="# ";ORS="# "} /RAID\ Controller/' $input_file  | grep "logicaldrive" | awk -F, '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	multipath_status=`awk 'BEGIN{RS="# ";ORS="# "} /Multipath\ Status/' $input_file| grep -vE "Multipath Status|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
 	eth_link_status=`awk 'BEGIN{RS="# ";ORS="# "} /Network Config/' $input_file | grep "Link detected:"`
 	bond_status=`egrep -A 5 "^- bond[0-9] status" $input_file | egrep -v "^Ethernet Channel|^$|^--"`
 	net_conn=`awk 'BEGIN{RS="# ";ORS="# "} /Network\ Connections/' $input_file | grep -vE "Network|^#" | grep -E "ESTABLISHED|LISTEN" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
@@ -93,6 +95,7 @@ insert_data (){
 	csv_format "$memused"
 	csv_format "$mountfs"
 	csv_format "$raid_level"
+	csv_format "$multipath_status"
 	csv_format "$eth_link_status"
 	csv_format "$bond_status"
 	csv_format "$net_conn"
