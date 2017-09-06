@@ -31,7 +31,6 @@ fi
 #   t/lib/bash/log_warn_die.sh
 # ###########################################################################
 
-
 set -u
 
 BSGFUNCNAME=""
@@ -306,7 +305,7 @@ _eval_po() {
          default_val=$(size_to_bytes ${default_val})
       fi
 
-      eval "OPT_${opt}"="${default_val}"
+      eval "OPT_${opt}=${default_val}"
    done
 }
 
@@ -442,7 +441,7 @@ _parse_command_line() {
             val=$(size_to_bytes ${val})
          fi
 
-         eval "OPT_${opt}"="'$val'"
+         eval "OPT_${opt}='$val'"
 
          opt=""
          val=""
