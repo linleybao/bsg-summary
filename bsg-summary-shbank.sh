@@ -9,12 +9,19 @@ set -u
 # Globals, settings, helper functions
 # ########################################################################
 TOOL="bsg-summary-shbank"
-FTPSERVER1='48.1.1.123'
-FTPSERVER2='48.1.1.124'
+
 LANG=C
 L_ALL=C
 POSIXLY_CORRECT=1
 export POSIXLY_CORRECT
+
+
+DATE=`/bin/date +%Y-%m%d-%H-%M-%S`
+IP_DEV=`route| awk '$1=="default" { print $8}'`
+IP_ADDR='no_gateway'
+if [[ ${IP_DEV} != '' ]]; then
+    IP_ADDR=`ifconfig ${IP_DEV} | awk '/inet addr/{print $2}'| awk -F : '{print $2}'`
+fi
 
 # ###########################################################################
 # log_warn_die package
@@ -89,7 +96,7 @@ usage() {
    local file="$1"
 
    local usage="$(grep '^Usage: ' "$file")"
-   echo $usage
+   echo ${usage}
    echo
    echo "For more information, 'man $TOOL' or 'perldoc $file'."
 }
@@ -142,7 +149,7 @@ usage_or_errors() {
          cd "$PO_DIR"
          for opt in *; do
             local varname="OPT_$(echo "$opt" | tr a-z- A-Z_)"
-            eval local varvalue=\$$varname
+            eval local varvalue=\$${varname}
             if ! grep -q "type:" "$PO_DIR/$opt" >/dev/null; then
                if [ "$varvalue" -a "$varvalue" = "yes" ];
                   then varvalue="TRUE"
@@ -157,7 +164,7 @@ usage_or_errors() {
       return 1
    fi
 
-   if [ $OPT_ERRS -gt 0 ]; then
+   if [ ${OPT_ERRS} -gt 0 ]; then
       echo
       usage "$file"
       return 1
@@ -206,7 +213,7 @@ parse_options() {
       local user_config_files="$1"
       shift  # that ^
       local IFS=","
-      for user_config_file in $user_config_files; do
+      for user_config_file in ${user_config_files}; do
          _parse_config_files "$user_config_file"
       done
    else
@@ -260,7 +267,7 @@ _eval_po() {
       while read key val; do
          case "$key" in
             long)
-               opt=$(echo $val | sed 's/-/_/g' | tr '[:lower:]' '[:upper:]')
+               opt=$(echo ${val} | sed 's/-/_/g' | tr '[:lower:]' '[:upper:]')
                ;;
             default)
                default_val="$val"
@@ -288,18 +295,18 @@ _eval_po() {
          exit 1
       fi
 
-      if [ $neg -eq 1 ]; then
+      if [ ${neg} -eq 1 ]; then
          if [ -z "$default_val" ] || [ "$default_val" != "yes" ]; then
             echo "Option $opt_spec is negatable but not default: yes" >&2
             exit 1
          fi
       fi
 
-      if [ $size -eq 1 -a -n "$default_val" ]; then
-         default_val=$(size_to_bytes $default_val)
+      if [ ${size} -eq 1 -a -n "$default_val" ]; then
+         default_val=$(size_to_bytes ${default_val})
       fi
 
-      eval "OPT_${opt}"="$default_val"
+      eval "OPT_${opt}"="${default_val}"
    done
 }
 
@@ -373,28 +380,28 @@ _parse_command_line() {
 
          real_opt="$opt"
 
-         if $(echo $opt | grep '^--no[^-]' >/dev/null); then
-            local base_opt=$(echo $opt | sed 's/^--no//')
+         if $(echo ${opt} | grep '^--no[^-]' >/dev/null); then
+            local base_opt=$(echo ${opt} | sed 's/^--no//')
             if [ -f "$BSG_TMPDIR/po/$base_opt" ]; then
                opt_is_negated=1
                opt="$base_opt"
             else
                opt_is_negated=""
-               opt=$(echo $opt | sed 's/^-*//')
+               opt=$(echo ${opt} | sed 's/^-*//')
             fi
          else
-            if $(echo $opt | grep '^--no-' >/dev/null); then
+            if $(echo ${opt} | grep '^--no-' >/dev/null); then
                opt_is_negated=1
-               opt=$(echo $opt | sed 's/^--no-//')
+               opt=$(echo ${opt} | sed 's/^--no-//')
             else
                opt_is_negated=""
-               opt=$(echo $opt | sed 's/^-*//')
+               opt=$(echo ${opt} | sed 's/^-*//')
             fi
          fi
 
-         if $(echo $opt | grep '^[a-z-][a-z-]*=' >/dev/null 2>&1); then
-            val="$(echo $opt | awk -F= '{print $2}')"
-            opt="$(echo $opt | awk -F= '{print $1}')"
+         if $(echo ${opt} | grep '^[a-z-][a-z-]*=' >/dev/null 2>&1); then
+            val="$(echo ${opt} | awk -F= '{print $2}')"
+            opt="$(echo ${opt} | awk -F= '{print $1}')"
          fi
 
          if [ -f "$BSG_TMPDIR/po/$opt" ]; then
@@ -432,10 +439,10 @@ _parse_command_line() {
          opt=$(cat "$spec" | grep '^long:' | cut -d':' -f2 | sed 's/-/_/g' | tr '[:lower:]' '[:upper:]')
 
          if grep "^type:size" "$spec" >/dev/null; then
-            val=$(size_to_bytes $val)
+            val=$(size_to_bytes ${val})
          fi
 
-         eval "OPT_$opt"="'$val'"
+         eval "OPT_${opt}"="'$val'"
 
          opt=""
          val=""
@@ -451,7 +458,7 @@ _parse_command_line() {
 
 size_to_bytes() {
    local size="$1"
-   echo $size | perl -ne '%f=(B=>1, K=>1_024, M=>1_048_576, G=>1_073_741_824, T=>1_099_511_627_776); m/^(\d+)([kMGT])?/i; print $1 * $f{uc($2 || "B")};'
+   echo ${size} | perl -ne '%f=(B=>1, K=>1_024, M=>1_048_576, G=>1_073_741_824, T=>1_099_511_627_776); m/^(\d+)([kMGT])?/i; print $1 * $f{uc($2 || "B")};'
 }
 
 # ###########################################################################
@@ -523,8 +530,8 @@ _pidof() {
 
 _lsof() {
    local pid="$1"
-   if ! lsof -p $pid 2>/dev/null; then
-      /bin/ls -l /proc/$pid/fd 2>/dev/null
+   if ! lsof -p ${pid} 2>/dev/null; then
+      /bin/ls -l /proc/${pid}/fd 2>/dev/null
    fi
 }
 
@@ -561,17 +568,17 @@ CMD_OBJDUMP="$( _which objdump 2>/dev/null )"
 
 get_nice_of_pid () {
    local pid="$1"
-   local niceness="$(ps -p $pid -o nice | awk '$1 !~ /[^0-9]/ {print $1; exit}')"
+   local niceness="$(ps -p ${pid} -o nice | awk '$1 !~ /[^0-9]/ {print $1; exit}')"
 
    if [ -n "${niceness}" ]; then
-      echo $niceness
+      echo ${niceness}
    else
       local tmpfile="$BSG_TMPDIR/nice_through_c.tmp.c"
       _d "Getting the niceness from ps failed, somehow. We are about to try this:"
       cat <<EOC > "$tmpfile"
 
 int main(void) {
-   int priority = getpriority(PRIO_PROCESS, $pid);
+   int priority = getpriority(PRIO_PROCESS, ${pid});
    if ( priority == -1 && errno == ESRCH ) {
       return 1;
    }
@@ -588,7 +595,7 @@ EOC
       fi
       _d "$tmpfile: $( cat "$tmpfile" )"
       _d "$c_comp -xc \"$tmpfile\" -o \"$tmpfile\" && eval \"$tmpfile\""
-      $c_comp -xc "$tmpfile" -o "$tmpfile" 2>/dev/null && eval "$tmpfile" 2>/dev/null
+      ${c_comp} -xc "$tmpfile" -o "$tmpfile" 2>/dev/null && eval "${tmpfile}" 2>/dev/null
       if [ $? -ne 0 ]; then
          echo "?"
          _d "Failed to get a niceness value for $pid"
@@ -623,13 +630,13 @@ has_symbols () {
    local has_symbols=""
 
    if    [ "${CMD_FILE}" ] \
-      && [ "$($CMD_FILE "${executable}" | grep 'not stripped' )" ]; then
+      && [ "$(${CMD_FILE} "${executable}" | grep 'not stripped' )" ]; then
       has_symbols=1
    elif    [ "${CMD_NM}" ] \
         || [ "${CMD_OBJDMP}" ]; then
       if    [ "${CMD_NM}" ] \
          && [ !"$("${CMD_NM}" -- "${executable}" 2>&1 | grep 'File format not recognized' )" ]; then
-         if [ -z "$( $CMD_NM -- "${executable}" 2>&1 | grep ': no symbols' )" ]; then
+         if [ -z "$( ${CMD_NM} -- "${executable}" 2>&1 | grep ': no symbols' )" ]; then
             has_symbols=1
          fi
       elif [ -z "$("${CMD_OBJDUMP}" -t -- "${executable}" | grep '^no symbols$' )" ]; then
@@ -826,25 +833,25 @@ collect_system_data () { local BSGFUNCNAME=collect_system_data;
       cat "/var/log/dmesg" > "$data_dir/dmesg_file"
    fi
 
-   $CMD_SYSCTL -a > "$data_dir/sysctl" 2>/dev/null
+   ${CMD_SYSCTL} -a > "$data_dir/sysctl" 2>/dev/null
 
    if [ "${CMD_LSPCI}" ]; then
-      $CMD_LSPCI > "$data_dir/lspci_file" 2>/dev/null
+      ${CMD_LSPCI} > "$data_dir/lspci_file" 2>/dev/null
    fi
 
    local platform="$(uname -s)"
    echo "platform    $platform"   >> "$data_dir/summary"
-   echo "hostname    $(uname -n)" >> "$data_dir/summary"
+   echo "hostname    $HOSTNAME" >> "$data_dir/summary"
    uptime >> "$data_dir/uptime"
 
-   processor_info "$data_dir"
+   processor_info "${platform}" "$data_dir"
    find_release_and_kernel "$platform" >> "$data_dir/summary"
    cpu_and_os_arch "$platform"         >> "$data_dir/summary"
    find_virtualization "$platform" "$data_dir/dmesg_file" "$data_dir/lspci_file" >> "$data_dir/summary"
    dmidecode_system_info               >> "$data_dir/summary"
 
    if [ "${platform}" = "SunOS" -a "${CMD_ZONENAME}" ]; then
-      echo "zonename    $($CMD_ZONENAME)" >> "$data_dir/summary"
+      echo "zonename    $(${CMD_ZONENAME})" >> "$data_dir/summary"
    fi
 
    if [ -x /lib/libc.so.6 ]; then
@@ -854,7 +861,7 @@ collect_system_data () { local BSGFUNCNAME=collect_system_data;
    local rss=$(ps -eo rss 2>/dev/null | awk '/[0-9]/{total += $1 * 1024} END {print total}')
    echo "rss    ${rss}" >> "$data_dir/summary"
 
-   [ "$CMD_DMIDECODE" ] && $CMD_DMIDECODE > "$data_dir/dmidecode" 2>/dev/null
+   [ "$CMD_DMIDECODE" ] && ${CMD_DMIDECODE} > "$data_dir/dmidecode" 2>/dev/null
 
    find_memory_stats "$platform" > "$data_dir/memory"
    [ "$OPT_SUMMARIZE_MOUNTS" ] && mounted_fs_info "$platform" > "$data_dir/mounted_fs"
@@ -866,25 +873,25 @@ collect_system_data () { local BSGFUNCNAME=collect_system_data;
    [ "${platform}" = "Linux" ] && linux_exclusive_collection "$data_dir"
 
    if [ "$CMD_IP" -a "$OPT_SUMMARIZE_NETWORK" ]; then
-      $CMD_IP -s link > "$data_dir/ip"
+      ${CMD_IP} -s link > "$data_dir/ip"
       network_device_info "$data_dir/ip" > "$data_dir/network_devices"
    fi
 
-   [ "$CMD_SWAPCTL" ] && $CMD_SWAPCTL -s > "$data_dir/swapctl"
+   [ "$CMD_SWAPCTL" ] && ${CMD_SWAPCTL} -s > "$data_dir/swapctl"
 
    if [ "$OPT_SUMMARIZE_PROCESSES" ]; then
-      top_processes > "$data_dir/processes"
+      top_processes "${platform}" > "$data_dir/processes"
       notable_processes_info > "$data_dir/notable_procs"
 
       if [ "$CMD_VMSTAT" ]; then
          touch "$data_dir/vmstat"
          (
-            $CMD_VMSTAT 1 $OPT_SLEEP > "$data_dir/vmstat"
+            ${CMD_VMSTAT} 1 ${OPT_SLEEP} > "$data_dir/vmstat"
          ) &
       fi
    fi
    
-   for file in $data_dir/*; do
+   for file in ${data_dir}/*; do
       [ "$file" = "vmstat" ] && continue
       [ ! -s "$file" ] && rm "$file"
    done
@@ -897,7 +904,7 @@ linux_exclusive_collection () { local BSGFUNCNAME=linux_exclusive_collection;
    echo "threading    $(getconf GNU_LIBPTHREAD_VERSION)" >> "$data_dir/summary"
 
    local getenforce=""
-   [ "$CMD_GETENFORCE" ] && getenforce="$($CMD_GETENFORCE 2>&1)"
+   [ "$CMD_GETENFORCE" ] && getenforce="$(${CMD_GETENFORCE} 2>&1)"
    echo "getenforce    ${getenforce:-"No SELinux detected"}" >> "$data_dir/summary"
 
    if [ -e "$data_dir/sysctl" ]; then
@@ -921,16 +928,16 @@ linux_exclusive_collection () { local BSGFUNCNAME=linux_exclusive_collection;
       echo "${file}    $(cat /proc/sys/fs/${file} 2>&1)" >> "$data_dir/summary"
    done
 
-   [ "$CMD_LVS" -a -x "$CMD_LVS" ] && $CMD_LVS 1>"$data_dir/lvs" 2>"$data_dir/lvs.stderr"
+   [ "$CMD_LVS" -a -x "$CMD_LVS" ] && ${CMD_LVS} 1>"$data_dir/lvs" 2>"$data_dir/lvs.stderr"
 
    [ "$CMD_VGS" -a -x "$CMD_VGS" ] && \
-      $CMD_VGS 2>/dev/null > "$data_dir/vgs"
+      ${CMD_VGS} 2>/dev/null > "$data_dir/vgs"
 
    [ "$CMD_PVS" -a -x "$CMD_PVS" ] && \
-      $CMD_PVS 2>/dev/null > "$data_dir/pvs"
+      ${CMD_PVS} 2>/dev/null > "$data_dir/pvs"
 
    [ "$CMD_NETSTAT" -a "$OPT_SUMMARIZE_NETWORK" ] && \
-      $CMD_NETSTAT -antp > "$data_dir/netstat" 2>/dev/null
+      ${CMD_NETSTAT} -antp > "$data_dir/netstat" 2>/dev/null
 }
 
 network_device_info () {
@@ -942,7 +949,7 @@ network_device_info () {
                         | awk -F: '{print $1}'     \
                         | grep -v '^lo\|^in\|^gr'  \
                         | sort -u ); do
-         ethtool $device > "$tempfile" 2>/dev/null
+         ethtool ${device} > "$tempfile" 2>/dev/null
 
          if ! grep -q 'No data available' "$tempfile"; then
             cat "$tempfile"
@@ -965,7 +972,7 @@ find_release_and_kernel () { local BSGFUNCNAME=find_release_and_kernel;
       elif [ -e /etc/system-release ]; then
          release=$(cat /etc/system-release);
       elif [ "$CMD_LSB_RELEASE" ]; then
-         release="$($CMD_LSB_RELEASE -ds) ($($CMD_LSB_RELEASE -cs))"
+         release="$(${CMD_LSB_RELEASE} -ds) ($(${CMD_LSB_RELEASE} -cs))"
       elif [ -e /etc/lsb-release ]; then
          release=$(grep DISTRIB_DESCRIPTION /etc/lsb-release |awk -F'=' '{print $2}' |sed 's#"##g');
       elif [ -e /etc/debian_version ]; then
@@ -987,7 +994,7 @@ find_release_and_kernel () { local BSGFUNCNAME=find_release_and_kernel;
          || [ "${platform}" = "NetBSD"  ] \
          || [ "${platform}" = "OpenBSD" ]; then
       release="$(uname -r)"
-      kernel="$($CMD_SYSCTL -n "kern.osrevision")"
+      kernel="$(${CMD_SYSCTL} -n "kern.osrevision")"
    elif [ "${platform}" = "SunOS" ]; then
       release="$(head -n1 /etc/release)"
       if [ -z "${release}" ]; then
@@ -1009,25 +1016,25 @@ cpu_and_os_arch () { local BSGFUNCNAME=cpu_and_os_arch;
          CPU_ARCH='64-bit'
       fi
    elif [ "${platform}" = "FreeBSD" ] || [ "${platform}" = "NetBSD" ]; then
-      if $CMD_SYSCTL "hw.machine_arch" | grep -v 'i[36]86' >/dev/null; then
+      if ${CMD_SYSCTL} "hw.machine_arch" | grep -v 'i[36]86' >/dev/null; then
          CPU_ARCH='64-bit'
       fi
    elif [ "${platform}" = "OpenBSD" ]; then
-      if $CMD_SYSCTL "hw.machine" | grep -v 'i[36]86' >/dev/null; then
+      if ${CMD_SYSCTL} "hw.machine" | grep -v 'i[36]86' >/dev/null; then
          CPU_ARCH='64-bit'
       fi
    elif [ "${platform}" = "SunOS" ]; then
-      if $CMD_ISAINFO -b | grep 64 >/dev/null ; then
+      if ${CMD_ISAINFO} -b | grep 64 >/dev/null ; then
          CPU_ARCH="64-bit"
       fi
    fi
    if [ -z "$CMD_FILE" ]; then
-      if [ "$CMD_GETCONF" ] && $CMD_GETCONF LONG_BIT 1>/dev/null 2>&1; then
-         OS_ARCH="$($CMD_GETCONF LONG_BIT 2>/dev/null)-bit"
+      if [ "$CMD_GETCONF" ] && ${CMD_GETCONF} LONG_BIT 1>/dev/null 2>&1; then
+         OS_ARCH="$(${CMD_GETCONF} LONG_BIT 2>/dev/null)-bit"
       else
          OS_ARCH='N/A'
       fi
-   elif $CMD_FILE /bin/sh | grep '64-bit' >/dev/null; then
+   elif ${CMD_FILE} /bin/sh | grep '64-bit' >/dev/null; then
        OS_ARCH='64-bit'
    fi
 
@@ -1057,9 +1064,9 @@ find_virtualization () { local BSGFUNCNAME=find_virtualization;
          virt="FreeBSD Jail"
       fi
    elif [ "${platform}" = "SunOS" ]; then
-      if [ "$CMD_PRTDIAG" ] && $CMD_PRTDIAG > "$tempfile" 2>/dev/null; then
+      if [ "$CMD_PRTDIAG" ] && ${CMD_PRTDIAG} > "$tempfile" 2>/dev/null; then
          virt="$(find_virtualization_generic "$tempfile" )"
-      elif [ "$CMD_SMBIOS" ] && $CMD_SMBIOS > "$tempfile" 2>/dev/null; then
+      elif [ "$CMD_SMBIOS" ] && ${CMD_SMBIOS} > "$tempfile" 2>/dev/null; then
          virt="$(find_virtualization_generic "$tempfile" )"
       fi
    elif [ -e /proc/user_beancounters ]; then
@@ -1096,13 +1103,13 @@ find_virtualization_dmesg () { local BSGFUNCNAME=find_virtualization_dmesg;
 
 dmidecode_system_info () { local BSGFUNCNAME=dmidecode_system_info;
    if [ "${CMD_DMIDECODE}" ]; then
-      local vendor="$($CMD_DMIDECODE -s "system-manufacturer" 2>/dev/null | sed 's/ *$//g')"
+      local vendor="$(${CMD_DMIDECODE} -s "system-manufacturer" 2>/dev/null | sed 's/ *$//g')"
       echo "vendor    ${vendor}"
       if [ "${vendor}" ]; then
-         local product="$($CMD_DMIDECODE -s "system-product-name" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
-         local version="$($CMD_DMIDECODE -s "system-version" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
-         local chassis="$($CMD_DMIDECODE -s "chassis-type" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
-         local servicetag="$($CMD_DMIDECODE -s "system-serial-number" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
+         local product="$(${CMD_DMIDECODE} -s "system-product-name" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
+         local version="$(${CMD_DMIDECODE} -s "system-version" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
+         local chassis="$(${CMD_DMIDECODE} -s "chassis-type" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
+         local servicetag="$(${CMD_DMIDECODE} -s "system-serial-number" 2>/dev/null | sed 's/ *$//g' | sed 's/^#.*$//g')"
          local system="${vendor}; ${product}; v${version} (${chassis})"
 
          echo "system    ${system}"
@@ -1118,7 +1125,7 @@ find_memory_stats () { local BSGFUNCNAME=find_memory_stats;
       free -b
       cat /proc/meminfo
    elif [ "${platform}" = "SunOS" ]; then
-      $CMD_PRTCONF | awk -F: '/Memory/{print $2}'
+      ${CMD_PRTCONF} | awk -F: '/Memory/{print $2}'
    fi
 }
 
@@ -1130,7 +1137,7 @@ mounted_fs_info () { local BSGFUNCNAME=mounted_fs_info;
       if [ "${platform}" = "Linux" ]; then
          cmd="df -h -P"
       fi
-      $cmd  | sort > "$BSG_TMPDIR/mounted_fs_info.tmp"
+      ${cmd}  | sort > "$BSG_TMPDIR/mounted_fs_info.tmp"
       mount | sort | join "$BSG_TMPDIR/mounted_fs_info.tmp" -
    fi
 }
@@ -1169,7 +1176,7 @@ find_raid_controller_dmesg () { local BSGFUNCNAME=find_raid_controller_dmesg;
 find_raid_controller_lspci () { local BSGFUNCNAME=find_raid_controller_lspci;
    local file="$1"
    if grep -q "RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS" "${file}" \
-     || grep -q "RAID bus controller: LSI Logic / Symbios Logic LSI MegaSAS" $file; then
+     || grep -q "RAID bus controller: LSI Logic / Symbios Logic LSI MegaSAS" ${file}; then
       echo 'LSI Logic MegaRAID SAS'
    elif grep -q "Fusion-MPT SAS" "${file}"; then
       echo 'Fusion-MPT SAS'
@@ -1192,7 +1199,7 @@ schedulers_and_queue_size () { local BSGFUNCNAME=schedulers_and_queue_size;
    local disks="$(ls /sys/block/ | grep -v -e ram -e loop -e 'fd[0-9]' | xargs echo)"
    echo "internal::disks    $disks" >> "$file"
 
-   for disk in $disks; do
+   for disk in ${disks}; do
       if [ -e "/sys/block/${disk}/queue/scheduler" ]; then
          echo "internal::${disk}    $(cat /sys/block/${disk}/queue/scheduler | grep -o '\[.*\]') $(cat /sys/block/${disk}/queue/nr_requests)" >> "$file" 
          fdisk -l "/dev/${disk/\!//}" 2>/dev/null
@@ -1201,8 +1208,10 @@ schedulers_and_queue_size () { local BSGFUNCNAME=schedulers_and_queue_size;
 }
 
 top_processes () { local BSGFUNCNAME=top_processes;
+   local platform=$1
+
    if [ "$CMD_PRSTAT" ]; then
-      $CMD_PRSTAT | head
+      ${CMD_PRSTAT} | head
    elif [ "$CMD_TOP" ]; then
       local cmd="$CMD_TOP -bn 1"
       if    [ "${platform}" = "FreeBSD" ] \
@@ -1210,7 +1219,7 @@ top_processes () { local BSGFUNCNAME=top_processes;
          || [ "${platform}" = "OpenBSD" ]; then
          cmd="$CMD_TOP -b -d 1"
       fi
-      $cmd \
+      ${cmd} \
          | sed -e 's# *$##g' -e '/./{H;$!d;}' -e 'x;/PID/!d;' \
          | grep . \
          | head
@@ -1224,7 +1233,7 @@ notable_processes_info () { local BSGFUNCNAME=notable_processes_info;
    echo "  PID    OOM    COMMAND"
 
    if [ "$sshd_pid" ]; then
-      printf "$format" "$sshd_pid" "$(get_oom_of_pid $sshd_pid)" "sshd"
+      printf "$format" "$sshd_pid" "$(get_oom_of_pid ${sshd_pid})" "sshd"
    else
       printf "%5s    %3s    %s\n" "?" "?" "sshd doesn't appear to be running"
    fi
@@ -1232,7 +1241,7 @@ notable_processes_info () { local BSGFUNCNAME=notable_processes_info;
    local BSGDEBUGR=""
    ps -eo pid,ucomm | grep '^[0-9]' | while read pid proc; do
       [ "$sshd_pid" ] && [ "$sshd_pid" = "$pid" ] && continue
-      local oom="$(get_oom_of_pid $pid)"
+      local oom="$(get_oom_of_pid ${pid})"
       if [ "$oom" ] && [ "$oom" != "?" ] && [ "$oom" = "-17" ]; then
          printf "$format" "$pid" "$oom" "$proc"
       fi
@@ -1240,11 +1249,13 @@ notable_processes_info () { local BSGFUNCNAME=notable_processes_info;
 }
 
 processor_info () { local BSGFUNCNAME=processor_info;
-   local data_dir="$1"
+   local platform="$1"
+   local data_dir="$2"
+
    if [ -f /proc/cpuinfo ]; then
       cat /proc/cpuinfo > "$data_dir/proc_cpuinfo_copy" 2>/dev/null
    elif [ "${platform}" = "SunOS" ]; then
-      $CMD_PSRINFO -v > "$data_dir/psrinfo_minus_v"
+      ${CMD_PSRINFO} -v > "$data_dir/psrinfo_minus_v"
    fi 
 }
 
@@ -1258,16 +1269,16 @@ propietary_raid_controller () { local BSGFUNCNAME=propietary_raid_controller;
    if [ "${controller}" = "AACRAID" ]; then
       if [ -z "$CMD_ARCCONF" ]; then
          notfound="e.g. http://www.adaptec.com/en-US/support/raid/scsi_raid/ASR-2120S/"
-      elif $CMD_ARCCONF getconfig 1 > "$file" 2>/dev/null; then
+      elif ${CMD_ARCCONF} getconfig 1 > "$file" 2>/dev/null; then
          echo "internal::raid_opt    1" >> "$variable_file"
       fi
    elif [ "${controller}" = "HP Smart Array" ]; then
       if [ "$CMD_HPACUCLI" ]; then
-         if $CMD_HPACUCLI ctrl all show config > "$file" 2>/dev/null; then
+         if ${CMD_HPACUCLI} ctrl all show config > "$file" 2>/dev/null; then
             echo "internal::raid_opt    2" >> "$variable_file"
          fi
       elif [ "$CMD_HPSSACLI" ]; then
-         if $CMD_HPSSACLI ctrl all show config > "$file" 2>/dev/null; then
+         if ${CMD_HPSSACLI} ctrl all show config > "$file" 2>/dev/null; then
             echo "internal::raid_opt    2" >> "$variable_file"
          fi
       else
@@ -1278,9 +1289,9 @@ propietary_raid_controller () { local BSGFUNCNAME=propietary_raid_controller;
          notfound="your package repository or the manufacturer's website"
       else
          echo "internal::raid_opt    3" >> "$variable_file"
-         $CMD_MEGACLI64 -AdpAllInfo -aALL -NoLog > "$data_dir/lsi_megaraid_adapter_info.tmp" 2>/dev/null
-         $CMD_MEGACLI64 -AdpBbuCmd -GetBbuStatus -aALL -NoLog > "$data_dir/lsi_megaraid_bbu_status.tmp" 2>/dev/null
-         $CMD_MEGACLI64 -LdPdInfo -aALL -NoLog > "$data_dir/lsi_megaraid_devices.tmp" 2>/dev/null
+         ${CMD_MEGACLI64} -AdpAllInfo -aALL -NoLog > "$data_dir/lsi_megaraid_adapter_info.tmp" 2>/dev/null
+         ${CMD_MEGACLI64} -AdpBbuCmd -GetBbuStatus -aALL -NoLog > "$data_dir/lsi_megaraid_bbu_status.tmp" 2>/dev/null
+         ${CMD_MEGACLI64} -LdPdInfo -aALL -NoLog > "$data_dir/lsi_megaraid_devices.tmp" 2>/dev/null
       fi
    fi
 
@@ -1318,7 +1329,7 @@ parse_proc_cpuinfo () { local BSGFUNCNAME=parse_proc_cpuinfo;
 
    cores=$((${cores} * ${physical}));
    local htt=""
-   if [ ${cores} -gt 0 -a $cores -lt $virtual ]; then htt=yes; else htt=no; fi
+   if [ ${cores} -gt 0 -a ${cores} -lt ${virtual} ]; then htt=yes; else htt=no; fi
 
    name_val "Processors" "physical = ${physical}, cores = ${cores}, virtual = ${virtual}, hyperthreading = ${htt}"
 
@@ -2012,31 +2023,32 @@ parse_uptime () {
 }
 
 
-custom_settings (){
+custom_settings (){ local BSGFUNCNAME=custom_settings;
+   local data_dir="$1"
    section "Custom Settings"
 
    section "RAID Controller"
-   local controller="$(get_var "raid_controller" "$data_dir/summary")"
+   local controller="$(get_var "raid_controller" "${data_dir}/summary")"
    name_val "Controller" "$controller"
-   local key="$(get_var "internal::raid_opt" "$data_dir/summary")"
+   local key="$(get_var "internal::raid_opt" "${data_dir}/summary")"
    case "$key" in
       0)
-         cat "$data_dir/raid-controller"
+         cat "${data_dir}/raid-controller"
          ;;
       1)
-         parse_arcconf "$data_dir/raid-controller"
+         parse_arcconf "${data_dir}/raid-controller"
          ;;
       2)
-         parse_hpacucli "$data_dir/raid-controller"
+         parse_hpacucli "${data_dir}/raid-controller"
          ;;
       3)
-         [ -e "$data_dir/lsi_megaraid_adapter_info.tmp" ] && \
-            parse_lsi_megaraid_adapter_info "$data_dir/lsi_megaraid_adapter_info.tmp"
-         [ -e "$data_dir/lsi_megaraid_bbu_status.tmp" ] && \
-            parse_lsi_megaraid_bbu_status "$data_dir/lsi_megaraid_bbu_status.tmp"
-         if [ -e "$data_dir/lsi_megaraid_devices.tmp" ]; then
-            parse_lsi_megaraid_virtual_devices "$data_dir/lsi_megaraid_devices.tmp"
-            parse_lsi_megaraid_devices "$data_dir/lsi_megaraid_devices.tmp"
+         [ -e "${data_dir}/lsi_megaraid_adapter_info.tmp" ] && \
+            parse_lsi_megaraid_adapter_info "${data_dir}/lsi_megaraid_adapter_info.tmp"
+         [ -e "${data_dir}/lsi_megaraid_bbu_status.tmp" ] && \
+            parse_lsi_megaraid_bbu_status "${data_dir}/lsi_megaraid_bbu_status.tmp"
+         if [ -e "${data_dir}/lsi_megaraid_devices.tmp" ]; then
+            parse_lsi_megaraid_virtual_devices "${data_dir}/lsi_megaraid_devices.tmp"
+            parse_lsi_megaraid_devices "${data_dir}/lsi_megaraid_devices.tmp"
          fi
          ;;
    esac
@@ -2060,20 +2072,20 @@ custom_settings (){
 
    section "Network Config" 
    local Netdev=`ifconfig | grep -E '^e|^b' | awk '{print $1}'`
-   for i in $Netdev
+   for i in ${Netdev}
    do
       subsection "$i" 
-      ifconfig $i 
+      ifconfig ${i}
       echo -n "${i}-"  
-      ethtool $i | grep "Link detected" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'
-      subsection "$i configfile" 
-      grep -vE "^#|^$" /etc/sysconfig/network-scripts/ifcfg-$i 
+      ethtool ${i} | grep "Link detected" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'
+      subsection "${i} configfile"
+      grep -vE "^#|^$" /etc/sysconfig/network-scripts/ifcfg-${i}
    done
    if [ -d /proc/net/bonding ]; then 
       for s in $(ls /proc/net/bonding/)
       do
-         subsection "$s status" 
-            cat /proc/net/bonding/$s 
+         subsection "${s} status"
+            cat /proc/net/bonding/${s}
       done
       else 
          subsection "bond status" 
@@ -2087,7 +2099,7 @@ custom_settings (){
    section "Users groupinfo" 
    for usrname in `awk -F: '{print $1}' /etc/passwd`;
    do
-        id $usrname | awk '{ printf(" %-25s %-25s %-40s\n", $1, $2, $3); }'
+        id ${usrname} | awk '{ printf(" %-25s %-25s %-40s\n", $1, $2, $3); }'
    done
 
    section "Iptables" 
@@ -2194,89 +2206,88 @@ report_system_summary () { local BSGFUNCNAME=report_system_summary;
 
    section "System Summary Report"
 
-
-   [ -e "$data_dir/summary" ] \
+   [ -e "${data_dir}/summary" ] \
       || die "The data directory doesn't have a summary file, exiting."
 
-   local platform="$(get_var "platform" "$data_dir/summary")"
+   local platform="$(get_var "platform" "${data_dir}/summary")"
    name_val "UTC Date" "`date -u +'%F %T UTC'` (local TZ: `date +'%Z %z'`)"
    name_val "Sys Date" "`date  +'%F %T System'` (local TZ: `date +'%Z %z'`)"
-   name_val "Hostname" "$(get_var hostname "$data_dir/summary")"
-   name_val "IP address" "$Ip"
-   name_val "Uptime" "$(parse_uptime "$data_dir/uptime")"
+   name_val "Hostname" "$(get_var hostname "${data_dir}/summary")"
+   name_val "IP address" "$IP_ADDR"
+   name_val "Uptime" "$(parse_uptime "${data_dir}/uptime")"
 
-   if [ "$(get_var "vendor" "$data_dir/summary")" ]; then
-      name_val "System" "$(get_var "system" "$data_dir/summary")";
-      name_val "Service Tag" "$(get_var "servicetag" "$data_dir/summary")";
+   if [ "$(get_var "vendor" "${data_dir}/summary")" ]; then
+      name_val "System" "$(get_var "system" "${data_dir}/summary")";
+      name_val "Service Tag" "$(get_var "servicetag" "${data_dir}/summary")";
    fi
 
    name_val "Platform" "${platform}"
-   local zonename="$(get_var zonename "$data_dir/summary")";
+   local zonename="$(get_var zonename "${data_dir}/summary")";
    [ -n "${zonename}" ] && name_val "Zonename" "$zonename"
 
-   name_val "Release" "$(get_var "release" "$data_dir/summary")"
-   name_val "Kernel" "$(get_var "kernel" "$data_dir/summary")"
+   name_val "Release" "$(get_var "release" "${data_dir}/summary")"
+   name_val "Kernel" "$(get_var "kernel" "${data_dir}/summary")"
 
-   name_val "Architecture" "CPU = $(get_var "CPU_ARCH" "$data_dir/summary"), OS = $(get_var "OS_ARCH" "$data_dir/summary")"
+   name_val "Architecture" "CPU = $(get_var "CPU_ARCH" "${data_dir}/summary"), OS = $(get_var "OS_ARCH" "${data_dir}/summary")"
 
-   local getenforce="$(get_var getenforce "$data_dir/summary")"
+   local getenforce="$(get_var getenforce "${data_dir}/summary")"
    [ -n "$getenforce" ] && name_val "SELinux" "${getenforce}";
 
-   name_val "Virtualized" "$(get_var "virt" "$data_dir/summary")"
+   name_val "Virtualized" "$(get_var "virt" "${data_dir}/summary")"
 
-   section_Processor "$platform" "$data_dir"
+   section_Processor "$platform" "${data_dir}"
 
-   section_Memory    "$platform" "$data_dir"
+   section_Memory    "$platform" "${data_dir}"
    
-   if [ -s "$data_dir/mounted_fs" ]; then
+   if [ -s "${data_dir}/mounted_fs" ]; then
       section "Mounted Filesystems"
-      parse_filesystems "$data_dir/mounted_fs" "${platform}"
+      parse_filesystems "${data_dir}/mounted_fs" "${platform}"
    fi
 
    if [ "${platform}" = "Linux" ]; then
 
       section "Disk Partioning"
-      parse_fdisk "$data_dir/partitioning"
+      parse_fdisk "${data_dir}/partitioning"
 
       section "LVM Volumes"
-      format_lvs "$data_dir/lvs"
+      format_lvs "${data_dir}/lvs"
       section "LVM Volume Groups"
-      format_lvs "$data_dir/vgs"
+      format_lvs "${data_dir}/vgs"
       section "LVM Physical Volumes"
-      format_lvs "$data_dir/pvs"
+      format_lvs "${data_dir}/pvs"
    fi
 
 
    if [ "${OPT_SUMMARIZE_NETWORK}" ]; then
       if [ "${platform}" = "Linux" ]; then
          section "Network Models"
-         if [ -s "$data_dir/lspci_file" ]; then
-            parse_ethernet_controller_lspci "$data_dir/lspci_file"
+         if [ -s "${data_dir}/lspci_file" ]; then
+            parse_ethernet_controller_lspci "${data_dir}/lspci_file"
          fi
       fi
 
 
-      if [ -s "$data_dir/ip" ]; then
+      if [ -s "${data_dir}/ip" ]; then
          section "Interface Statistics"
-         parse_ip_s_link "$data_dir/ip"
+         parse_ip_s_link "${data_dir}/ip"
       fi
 
-      if [ -s "$data_dir/network_devices" ]; then
+      if [ -s "${data_dir}/network_devices" ]; then
          section "Network Devices"
-         parse_ethtool "$data_dir/network_devices"
+         parse_ethtool "${data_dir}/network_devices"
       fi
 
-      if [ "${platform}" = "Linux" -a -e "$data_dir/netstat" ]; then
+      if [ "${platform}" = "Linux" -a -e "${data_dir}/netstat" ]; then
          section "Network Connections"
-         parse_netstat "$data_dir/netstat"
+         parse_netstat "${data_dir}/netstat"
       fi
    fi
 
    [ "$OPT_SUMMARIZE_PROCESSES" ] && processes_section           \
-                                       "$data_dir/processes"     \
-                                       "$data_dir/notable_procs"
+                                       "${data_dir}/processes"     \
+                                       "${data_dir}/notable_procs"
 
-   custom_settings
+   custom_settings "${data_dir}"
 
    section "The End"
 }
@@ -2291,17 +2302,19 @@ report_system_summary () { local BSGFUNCNAME=report_system_summary;
 # ###########################################################################
 
 ftp_upload () {
-   ftpserver=$1
-   username="bospcserver"
-   password="Abcd123$"
-   /usr/bin/ftp -i -n  <<EOD
-   open $ftpserver
-   user $username $password
+   local ftpserver=$1
+   local username=$2
+   local password=$3
+   local outfile=$4
+
+   /usr/bin/ftp -i -n << EOD
+   open ${ftpserver}
+   user ${username} ${password}
    bin
    hash
    lcd /tmp/
    passive
-   mput L-$Hostname-$Ip-$Date.txt
+   mput ${outfile}
    bye
 EOD
 }
@@ -2325,15 +2338,12 @@ main () { local BSGFUNCNAME=main;
    export PATH="${PATH}:/usr/local/bin:/usr/bin:/bin:/usr/libexec"
    export PATH="${PATH}:/usr/local/sbin:/usr/sbin:/sbin"
    export PATH="${PATH}:/usr/StorMan/:/opt/MegaRAID/MegaCli/"
-   Date=`/bin/date +%Y-%m%d-%H-%M-%S`
-   Hostname=`/bin/hostname -s`
-   Ipdev=`route| awk '$1=="default" { print $8}'`
-   if [[ ${Ipdev} != '' ]]; then
-      Ip=`ifconfig $Ipdev | awk '/inet addr/{print $2}'| awk -F : '{print $2}'`
-   else
-      Ip='no_gateway'
-   fi
-   Outfile=/tmp/L-$Hostname-$Ip-$Date.txt
+
+   local date=${DATE}
+   local hostname=$HOSTNAME
+   local ipdev=${IP_DEV}
+   local ip_addr=${IP_ADDR}
+   local outfile="L-${hostname}-${ip_addr}-${date}.txt"
 
    setup_commands
 
@@ -2344,16 +2354,23 @@ main () { local BSGFUNCNAME=main;
 
    local data_dir="$(setup_data_dir "${OPT_SAVE_SAMPLES:-""}")"
 
-   if [ -n "$OPT_READ_SAMPLES" -a -d "$OPT_READ_SAMPLES" ]; then
-      data_dir="$OPT_READ_SAMPLES"
+   if [ -n "${OPT_READ_SAMPLES}" -a -d "${OPT_READ_SAMPLES}" ]; then
+      data_dir="${OPT_READ_SAMPLES}"
    else
       collect_system_data "$data_dir" 2>"$data_dir/collect.err"
    fi
 
-   report_system_summary "$data_dir" >> $Outfile
+   report_system_summary "$data_dir" >> /tmp/${outfile}
 
-   ftp_upload ${FTPSERVER1}
-   ftp_upload ${FTPSERVER2}
+   local ftp_server1='48.1.1.123'
+   local ftp_usr1="bospcserver"
+   local ftp_pwd1="Abcd123$"
+   ftp_upload ${ftp_server1} ${ftp_usr1} ${ftp_pwd1} ${outfile}
+
+   local ftp_server2='48.1.1.124'
+   local ftp_usr2="bospcserver"
+   local ftp_pwd2="Abcd123$"
+   ftp_upload ${ftp_server2} ${ftp_usr2} ${ftp_pwd2} ${outfile}
 
    rm_tmpdir
 }
@@ -2361,7 +2378,7 @@ main () { local BSGFUNCNAME=main;
 sigtrap() { local BSGFUNCNAME=sigtrap;
    warn "Caught signal, forcing exit"
    rm_tmpdir
-   exit $EXIT_STATUS
+   exit ${EXIT_STATUS}
 }
 
 # Execute the program if it was not included from another file.  This makes it
@@ -2377,8 +2394,8 @@ if    [ "${0##*/}" = "$TOOL" ] \
    po_status=$?
    rm_tmpdir
 
-   if [ $po_status -ne 0 ]; then
-      exit $po_status
+   if [ ${po_status} -ne 0 ]; then
+      exit ${po_status}
    fi
 
    main "${@:-""}"
