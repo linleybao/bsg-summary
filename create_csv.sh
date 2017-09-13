@@ -5,8 +5,8 @@
 check_details (){
 	local s_file=/tmp/check.tmp
 	local d_file=$1
-	local out=`diff -b $s_file $d_file | wc -l`
-	if [ $out -eq 0  ]; then
+	local out=`diff -b ${s_file} ${d_file} | wc -l`
+	if [ ${out} -eq 0  ]; then
 		mid_v="OK"
 	else
 		mid_v="Warning"
@@ -52,34 +52,34 @@ create_head (){
 }
 
 insert_data (){
-	system_time=`grep -E "*Date\ \|" $input_file | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	hostname=`grep -E "Hostname\ \|" $input_file | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	ip_address=`grep -E "IP\ address\ \|" $input_file | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	gateway=`grep -E "GATEWAY" $input_file | head -1 | awk -F "=" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	uptime=`grep -E "Uptime\ \|" $input_file | awk -F "|" '{print $2}' | awk -F , '{print $1}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	system=`grep -E "System\ \|" $input_file | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	kernel=`grep -E "Kernel\ \|" $input_file | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	arch=`grep -E "Architecture\ \|" $input_file | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	virtualized=`grep -E "Virtualized\ \|" $input_file | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	processors=`grep -E "Processors\ \|" $input_file | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	memtotal=`grep -E "Total\ \|" $input_file | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	memfree=`grep -E "Free\ \|" $input_file | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	memused=`grep -E "Used\ \|" $input_file | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	mountfs=`awk 'BEGIN{RS="# ";ORS="# "} /Mounted\ Filesystems/' $input_file  | grep -vE "Mounted|^#" | awk '{print $6 "    ," $3}' | grep -v "Mountpoint" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	raid_level=`awk 'BEGIN{RS="# ";ORS="# "} /RAID\ Controller/' $input_file  | grep "logicaldrive" | awk -F, '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	multipath_status=`awk 'BEGIN{RS="# ";ORS="# "} /Multipath\ Status/' $input_file| grep -vE "Multipath Status|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	eth_link_status=`awk 'BEGIN{RS="# ";ORS="# "} /Network Config/' $input_file | grep "Link detected:"`
-	bond_status=`egrep -A 5 "^- bond[0-9] status" $input_file | egrep -v "^Ethernet Channel|^$|^--"`
-	net_conn=`awk 'BEGIN{RS="# ";ORS="# "} /Network\ Connections/' $input_file | grep -vE "Network|^#" | grep -E "ESTABLISHED|LISTEN" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	service_status=`awk 'BEGIN{RS="# ";ORS="# "} /Services\ status/' $input_file | grep -vE "Services|^  $|^#|OK" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	awk 'BEGIN{RS="# ";ORS="# "} /Services\ settings/' $input_file | grep -vE "Services settings|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g' > /tmp/check.tmp
+	system_time=`grep -E "*Date\ \|" ${input_file} | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	hostname=`grep -E "Hostname\ \|" ${input_file} | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	ip_address=`grep -E "IP\ address\ \|" ${input_file} | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	gateway=`grep -E "GATEWAY" ${input_file} | head -1 | awk -F "=" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	uptime=`grep -E "Uptime\ \|" ${input_file} | awk -F "|" '{print $2}' | awk -F , '{print $1}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	system=`grep -E "System\ \|" ${input_file} | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	kernel=`grep -E "Kernel\ \|" ${input_file} | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	arch=`grep -E "Architecture\ \|" ${input_file} | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	virtualized=`grep -E "Virtualized\ \|" ${input_file} | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	processors=`grep -E "Processors\ \|" ${input_file} | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	memtotal=`grep -E "Total\ \|" ${input_file} | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	memfree=`grep -E "Free\ \|" ${input_file} | awk -F "|" '{print $2}'  | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	memused=`grep -E "Used\ \|" ${input_file} | awk -F "|" '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	mountfs=`awk 'BEGIN{RS="# ";ORS="# "} /Mounted\ Filesystems/' ${input_file}  | grep -vE "Mounted|^#" | awk '{print $6 "    ," $3}' | grep -v "Mountpoint" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	raid_level=`awk 'BEGIN{RS="# ";ORS="# "} /RAID\ Controller/' ${input_file}  | grep "logicaldrive" | awk -F, '{print $2}' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	multipath_status=`awk 'BEGIN{RS="# ";ORS="# "} /Multipath\ Status/' ${input_file}| grep -vE "Multipath Status|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	eth_link_status=`awk 'BEGIN{RS="# ";ORS="# "} /Network Config/' ${input_file} | grep "Link detected:"`
+	bond_status=`egrep -A 5 "^- bond[0-9] status" ${input_file} | egrep -v "^Ethernet Channel|^$|^--"`
+	net_conn=`awk 'BEGIN{RS="# ";ORS="# "} /Network\ Connections/' ${input_file} | grep -vE "Network|^#" | grep -E "ESTABLISHED|LISTEN" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	service_status=`awk 'BEGIN{RS="# ";ORS="# "} /Services\ status/' ${input_file} | grep -vE "Services|^  $|^#|OK" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	awk 'BEGIN{RS="# ";ORS="# "} /Services\ settings/' ${input_file} | grep -vE "Services settings|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g' > /tmp/check.tmp
 	check_details /tmp/settings.std 
 	service_settings=${mid_v}
-	awk 'BEGIN{RS="# ";ORS="# "} /Security\ Police/' $input_file | grep -vE "Security Police|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g' > /tmp/check.tmp
+	awk 'BEGIN{RS="# ";ORS="# "} /Security\ Police/' ${input_file} | grep -vE "Security Police|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g' > /tmp/check.tmp
 	check_details /tmp/security.std 
 	s_status=${mid_v}
-	root_cron=`awk 'BEGIN{RS="# ";ORS="# "} /Root\ crontab/' $input_file | grep -vE "Root crontab|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
-	rhcs_status=`sed -n '/Member Name/,/- RHCS config/p' $input_file | grep -vE "RHCS config|^$" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	root_cron=`awk 'BEGIN{RS="# ";ORS="# "} /Root\ crontab/' ${input_file} | grep -vE "Root crontab|^#" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
+	rhcs_status=`sed -n '/Member Name/,/- RHCS config/p' ${input_file} | grep -vE "RHCS config|^$" | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'`
 
 	csv_format "$hostname"
 	csv_format "$system_time"
@@ -139,7 +139,7 @@ compress" > /tmp/settings.std
 create_head
 
 for file in `ls | egrep "*.txt"`; do
-	input_file=$file
+	input_file=${file}
 	insert_data
 done
 
