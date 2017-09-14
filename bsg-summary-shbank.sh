@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # bsg-summary-shbank for RHEL5
 # Modified on 2014/05/13
 # version 2.2.1 (1.0.10)
@@ -458,6 +458,10 @@ _parse_command_line() {
 size_to_bytes() {
    local size="$1"
    echo ${size} | perl -ne '%f=(B=>1, K=>1_024, M=>1_048_576, G=>1_073_741_824, T=>1_099_511_627_776); m/^(\d+)([kMGT])?/i; print $1 * $f{uc($2 || "B")};'
+}
+
+installed () {
+  command -v "$1" >/dev/null 2>&1
 }
 
 # ###########################################################################
@@ -2056,7 +2060,16 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
    blkid | grep -E "ext3|ext4|gfs"| sort
 
    section "Multipath Status" 
-   local multipath="$(multipath -ll 2>/dev/null)"
+   
+   if installed multipath
+   then
+      local multipath="$(multipath -ll 2>/dev/null)"
+   fi
+
+   if installed powermt
+   then
+      local multipath="$(powermt display dev=all 2>/dev/null)"
+   fi
    echo "${multipath:-Not installed multipath}"
 
    section "HBA Info"
@@ -2105,16 +2118,23 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
    iptables -L -n 
 
    section "NTP status" 
-   ntpstat 2>&1
+   service ntpd status 2>&1
+   echo ""
+   ntpq -p 2>&1
+   echo ""
+   grep -E "^server" /etc/ntp.conf 2>&1
    
    section "Root crontab" 
    crontab -l 2>&1
    
    section "Security Police" 
-   grep -E '^PA' /etc/login.defs  
+   grep -E '^PASS' /etc/login.defs
    echo ""
 
    grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/system-auth 
+   echo ""
+
+   grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/password-auth
    echo ""
 
    if [ `uname -r` == "2.6.18-308.el5" ]
@@ -2129,25 +2149,33 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
    echo "${tmout:-No setting TMOUT}"
 
    section "Services status" 
-   local ntp="$(/etc/init.d/ntpd status 2>/dev/null)"
-   echo "${ntp:-Not install ntpd }"  
-   local snmpd="$(/etc/init.d/snmpd status 2>/dev/null)"
-   echo "${snmpd:-Not install snmpd}"  
-   local hphealth="$(/etc/init.d/hp-health status 2>/dev/null)"
-   echo "${hphealth:-Not install hp-health}"  
-   local hpilo="$(/etc/init.d/hp-ilo status 2>/dev/null)"
-   echo "${hpilo:-Not install hp-ilo}"  
-   local hpsnmp="$(/etc/init.d/hp-snmp-agents status 2>/dev/null)"
-   echo "${hpsnmp:-Not install hp-snmp-agents}"  
-   local hpsmhd="$(/etc/init.d/hpsmhd status 2>/dev/null)"
-   echo "${hpsmhd:-Not install hpsmhd}"  
-   if /opt/OV/bin/ovc -status >/dev/null 2>&1; then
-   OVO="$(/opt/OV/bin/ovc )"
-   fi 
-   echo "${OVO:-Not install OVO agent}" 
+   #local ntp="$(/etc/init.d/ntpd status 2>/dev/null)"
+   #echo "${ntp:-Not install ntpd }"  
+   #local snmpd="$(/etc/init.d/snmpd status 2>/dev/null)"
+   #echo "${snmpd:-Not install snmpd}"  
+   #local hphealth="$(/etc/init.d/hp-health status 2>/dev/null)"
+   #echo "${hphealth:-Not install hp-health}"  
+   #local hpilo="$(/etc/init.d/hp-ilo status 2>/dev/null)"
+   #echo "${hpilo:-Not install hp-ilo}"  
+   #local hpsnmp="$(/etc/init.d/hp-snmp-agents status 2>/dev/null)"
+   #echo "${hpsnmp:-Not install hp-snmp-agents}"  
+   #local hpsmhd="$(/etc/init.d/hpsmhd status 2>/dev/null)"
+   #echo "${hpsmhd:-Not install hpsmhd}"  
+   #if /opt/OV/bin/ovc -status >/dev/null 2>&1; then
+   #OVO="$(/opt/OV/bin/ovc )"
+   #fi 
+   #echo "${OVO:-Not install OVO agent}" 
+   for srv in `chkconfig --list| grep -E "3:on" | grep -E "5:on"| awk '{print $1}'`
+   do
+      echo "-------------SERVICE $srv-------------"
+      service $srv status
+      echo "--------------------------------------"
+   done
    
+
    section "Chkconfig list" 
-   chkconfig --list | grep -E 'ntpd|snmpd|iptables|hp-health|hp-ilo|hp-snmp-agents|hpsmhd'   
+   #chkconfig --list | grep -E 'ntpd|snmpd|iptables|hp-health|hp-ilo|hp-snmp-agents|hpsmhd'
+   chkconfig --list| grep -E "3:on" | grep -E "5:on"
    
    section "Services settings" 
 
@@ -2190,7 +2218,7 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
    section "errlog" 
 
    subsection "messages" 
-   local messageslog="$(grep -Ei "error|fail" /var/log/messages)"
+   local messageslog="$(grep -E "warn/error/segfault/fail/call\ trace/link\ down/critical/oom" /var/log/messages)"
    echo "${messageslog:-No error logs in system log}"  
    
    subsection "secure" 
@@ -2343,6 +2371,7 @@ main () { local BSGFUNCNAME=main;
    local ipdev=${IP_DEV}
    local ip_addr=${IP_ADDR}
    local outfile="L-${hostname}-${ip_addr}-${date}.txt"
+   local msgfile="L-${hostname}-${ip_addr}-${date}.messages"
 
    setup_commands
 
@@ -2361,15 +2390,19 @@ main () { local BSGFUNCNAME=main;
 
    report_system_summary "$data_dir" >> /tmp/${outfile}
 
+   cp /var/log/messages /tmp/${msgfile}
+
    local ftp_server1='48.1.1.123'
    local ftp_usr1="bospcserver"
    local ftp_pwd1="Abcd123$"
    ftp_upload ${ftp_server1} ${ftp_usr1} ${ftp_pwd1} ${outfile}
+   ftp_upload ${ftp_server1} ${ftp_usr1} ${ftp_pwd1} ${msgfile}
 
    local ftp_server2='48.1.1.124'
    local ftp_usr2="bospcserver"
    local ftp_pwd2="Abcd123$"
    ftp_upload ${ftp_server2} ${ftp_usr2} ${ftp_pwd2} ${outfile}
+   ftp_upload ${ftp_server2} ${ftp_usr2} ${ftp_pwd2} ${msgfile}
 
    rm_tmpdir
 }
