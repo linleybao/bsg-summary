@@ -1,0 +1,1208 @@
+# System Summary Report ######################################
+    UTC Date | 2017-09-14 09:08:58 UTC (local TZ: CST +0800)
+    Sys Date | 2017-09-14 17:08:58 System (local TZ: CST +0800)
+    Hostname | zjcshlwyhdb01.shbank.com
+  IP address | 10.240.1.151
+      Uptime | 551 days, 50 min,  4 users,  load average: 0.99, 0.73, 2.31
+      System | # SMBIOS implementations newer than version 2.7 are not
+ Service Tag | 
+    Platform | Linux
+     Release | Red Hat Enterprise Linux Server release 6.4 (Santiago)
+      Kernel | 2.6.32-358.el6.x86_64
+Architecture | CPU = 64-bit, OS = 64-bit
+     SELinux | Disabled
+ Virtualized | No virtualization detected
+# Processor ##################################################
+  Processors | physical = 4, cores = 32, virtual = 64, hyperthreading = yes
+      Speeds | 62x1200.000, 2x2000.000
+      Models | 64xIntel(R) Xeon(R) CPU E7-4820 v2 @ 2.00GHz
+      Caches | 64x16384 KB
+# Memory #####################################################
+       Total | 252.2G
+        Free | 76.7G
+        Used | physical = 175.4G, swap allocated = 64.0G, swap used = 4.0k, virtual = 175.4G
+     Buffers | 1.3G
+      Caches | 166.5G
+       Dirty | 956 kB
+  Swappiness | 0
+  Locator          Size     Speed             Form Factor   Type          Type Detail
+  ================ ======== ================= ============= ============= ===========
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+                    1067 MHz                                                       
+  BOARD 1 DIMM 12   16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 1 DIMM 1    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 1 DIMM 4    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 1 DIMM 9    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 3 DIMM 12   16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 3 DIMM 1    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 3 DIMM 4    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 3 DIMM 9    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 5 DIMM 12   16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 5 DIMM 1    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 5 DIMM 4    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 5 DIMM 9    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 7 DIMM 12   16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 7 DIMM 1    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 7 DIMM 4    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+  BOARD 7 DIMM 9    16384 MB 1600 MHz          DIMM          DDR3          Synchronous Registered (Buffered)
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+                    Unknown                                                        
+  BOARD 1 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 1 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 12   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 1    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 4    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 2 DIMM 9    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 3 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 12   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 1    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 4    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 4 DIMM 9    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 5 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 12   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 1    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 4    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 6 DIMM 9    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 7 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 10   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 11   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 12   {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 1    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 2    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 3    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 4    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 5    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 6    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 7    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 8    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+  BOARD 8 DIMM 9    {EMPTY}  Unknown           DIMM          DDR3          Synchronous
+# Mounted Filesystems ########################################
+  Filesystem                           Size Used Type  Opts Mountpoint
+  /dev/mapper/cshlwyhVG-db2actlog01LV   30G   1% ext4  rw   /db2actlog01
+  /dev/mapper/cshlwyhVG-db2actlog02LV   30G   1% ext4  rw   /db2actlog02
+  /dev/mapper/cshlwyhVG-db2arch01LV     69G   6% ext4  rw   /db2arch01
+  /dev/mapper/cshlwyhVG-db2arch02LV     30G   1% ext4  rw   /db2arch02
+  /dev/mapper/cshlwyhVG-db2data01LV    4.7T  38% ext4  rw   /db2data01
+  /dev/mapper/cshlwyhVG-db2data02LV    108G  80% ext4  rw   /db2data02
+  /dev/mapper/cshlwyhVG-db2homeLV       20G   1% ext4  rw   /db2home
+  /dev/mapper/vg_db2-lv_db2data03      148G  93% ext4  rw   /db2data03
+  /dev/mapper/vg_root-db2LV            9.9G  45% ext4  rw   /db2
+  /dev/mapper/vg_root-lv_ceapp        1008M   4% ext4  rw   /ceapp
+  /dev/mapper/vg_root-lv_ibapp          50G  72% ext4  rw   /ibapp
+  /dev/mapper/vg_root-lv_nbu65          20G  20% ext4  rw   /nbu65
+  /dev/mapper/vg_root-lv_patrol        4.9G   3% ext4  rw   /patrol
+  /dev/mapper/vg_root-lv_root           49G  27% ext4  rw   /
+  /dev/sda1                            485M   9% ext4  rw   /boot
+  tmpfs                                127G   1% tmpfs rw   /dev/shm
+# Disk Partioning ############################################
+Device                Type      Start        End               Size
+===================== ==== ========== ========== ==================
+/dev/dm-0             Disk                              52428800000
+/dev/dm-1             Disk                              68719476736
+/dev/dm-10            Disk                              10737418240
+/dev/dm-11            Disk                              53687091200
+/dev/dm-12            Disk                              21474836480
+/dev/dm-13            Disk                               1073741824
+/dev/dm-14            Disk                             161052884992
+/dev/dm-15            Disk                             322122547200
+/dev/dm-16            Disk                             322122547200
+/dev/dm-17            Disk                             214748364800
+/dev/dm-18            Disk                             214748364800
+/dev/dm-19            Disk                             214748364800
+/dev/dm-2             Disk                              21474836480
+/dev/dm-20            Disk                             214748364800
+/dev/dm-21            Disk                             107374182400
+/dev/dm-22            Disk                              53687091200
+/dev/dm-23            Disk                             536870912000
+/dev/dm-24            Disk                             536870912000
+/dev/dm-25            Disk                             536870912000
+/dev/dm-26            Disk                             536870912000
+/dev/dm-27            Disk                             536870912000
+/dev/dm-28            Disk                             536870912000
+/dev/dm-3             Disk                              32212254720
+/dev/dm-4             Disk                              32212254720
+/dev/dm-5             Disk                              32212254720
+/dev/dm-6             Disk                              75161927680
+/dev/dm-7             Disk                            5219412869120
+/dev/dm-8             Disk                             117037858816
+/dev/dm-9             Disk                               5242880000
+/dev/sda              Disk                             299966445568
+/dev/sda1             Part          1         64          518192640
+/dev/sda2             Part         64      36469       299441318400
+/dev/sdb              Disk                             858993459200
+/dev/sdb1             Part          1      97907       805304263680
+/dev/sdd              Disk                             322122547200
+/dev/sde              Disk                             322122547200
+/dev/sdf              Disk                             214748364800
+/dev/sdg              Disk                             214748364800
+/dev/sdh              Disk                             214748364800
+/dev/sdi              Disk                             214748364800
+/dev/sdj              Disk                             107374182400
+/dev/sdk              Disk                              53687091200
+/dev/sdl              Disk                             536870912000
+/dev/sdm              Disk                             536870912000
+/dev/sdn              Disk                             536870912000
+/dev/sdo              Disk                             536870912000
+/dev/sdp              Disk                             536870912000
+/dev/sdq              Disk                             536870912000
+# LVM Volumes ################################################
+  LV            VG        Attr      LSize   Pool Origin Data%  Move Log Cpy%Sync Convert
+  db2actlog01LV cshlwyhVG -wi-ao---  30.00g                                             
+  db2actlog02LV cshlwyhVG -wi-ao---  30.00g                                             
+  db2arch01LV   cshlwyhVG -wi-ao---  70.00g                                             
+  db2arch02LV   cshlwyhVG -wi-ao---  30.00g                                             
+  db2data01LV   cshlwyhVG -wi-ao---   4.75t                                             
+  db2data02LV   cshlwyhVG -wi-ao--- 109.00g                                             
+  db2homeLV     cshlwyhVG -wi-ao---  20.00g                                             
+  lv_db2data03  vg_db2    -wi-ao--- 149.99g                                             
+  db2LV         vg_root   -wi-ao---  10.00g                                             
+  lv_ceapp      vg_root   -wi-ao---   1.00g                                             
+  lv_ibapp      vg_root   -wi-ao---  50.00g                                             
+  lv_nbu65      vg_root   -wi-ao---  20.00g                                             
+  lv_patrol     vg_root   -wi-ao---   4.88g                                             
+  lv_root       vg_root   -wi-ao---  48.83g                                             
+  lv_swap       vg_root   -wi-ao---  64.00g                                             
+# LVM Volume Groups ##########################################
+  VG        #PV #LV #SN Attr   VSize   VFree 
+  cshlwyhVG  13   7   0 wz--n-   5.03t     0 
+  vg_db2      2   1   0 wz--n- 149.99g     0 
+  vg_root     1   7   0 wz--n- 278.88g 80.16g
+# LVM Physical Volumes #######################################
+  PV                 VG        Fmt  Attr PSize   PFree 
+  /dev/mapper/mpathc cshlwyhVG lvm2 a--  300.00g     0 
+  /dev/mapper/mpathd cshlwyhVG lvm2 a--  300.00g     0 
+  /dev/mapper/mpathe cshlwyhVG lvm2 a--  200.00g     0 
+  /dev/mapper/mpathf cshlwyhVG lvm2 a--  200.00g     0 
+  /dev/mapper/mpathg cshlwyhVG lvm2 a--  200.00g     0 
+  /dev/mapper/mpathh cshlwyhVG lvm2 a--  200.00g     0 
+  /dev/mapper/mpathi vg_db2    lvm2 a--  100.00g     0 
+  /dev/mapper/mpathj vg_db2    lvm2 a--   50.00g     0 
+  /dev/mapper/mpathk cshlwyhVG lvm2 a--  500.00g     0 
+  /dev/mapper/mpathl cshlwyhVG lvm2 a--  500.00g     0 
+  /dev/mapper/mpathm cshlwyhVG lvm2 a--  500.00g     0 
+  /dev/mapper/mpathn cshlwyhVG lvm2 a--  500.00g     0 
+  /dev/mapper/mpatho cshlwyhVG lvm2 a--  500.00g     0 
+  /dev/mapper/mpathp cshlwyhVG lvm2 a--  500.00g     0 
+  /dev/sda2          vg_root   lvm2 a--  278.88g 80.16g
+  /dev/sdb1          cshlwyhVG lvm2 a--  750.00g     0 
+# Network Models #############################################
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  Controller | Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+# Interface Statistics #######################################
+  interface  rx_bytes rx_packets  rx_errors   tx_bytes tx_packets  tx_errors
+  ========= ========= ========== ========== ========== ========== ==========
+  lo       1250000000  250000000          0 1250000000  250000000          0
+  eth0     3500000000  250000000          0 4000000000 3500000000          0
+  eth1     2000000000  250000000          0     175000        500          0
+  eth2      450000000  200000000          0 4000000000   50000000          0
+  eth3      700000000  175000000          0     100000        700          0
+  eth4              0          0          0          0          0          0
+  eth5              0          0          0          0          0          0
+  eth6              0          0          0          0          0          0
+  eth7              0          0          0          0          0          0
+  eth8              0          0          0          0          0          0
+  eth9              0          0          0          0          0          0
+  eth10             0          0          0          0          0          0
+  eth11             0          0          0          0          0          0
+  bond0    1250000000  500000000          0 4000000000 3500000000          0
+  bond1    1250000000  350000000          0 4000000000   50000000          0
+# Network Devices ############################################
+  Device    Speed     Duplex
+  ========= ========= =========
+  eth8       Unknown!   Unknown!  
+  eth9       Unknown!   Unknown!  
+  bond0                           
+  eth0       1000Mb/s   Full      
+  bond1                           
+  eth1       1000Mb/s   Full      
+  eth2       1000Mb/s   Full      
+  eth3       1000Mb/s   Full      
+  eth4       Unknown!   Unknown!  
+  eth5       Unknown!   Unknown!  
+  eth6       Unknown!   Unknown!  
+  eth10      Unknown!   Unknown!  
+  eth7       Unknown!   Unknown!  
+  eth11      Unknown!   Unknown!  
+# Network Connections ########################################
+  Connections from remote IP addresses
+    10.240.13.19        1
+    10.240.88.90        2
+    10.240.101.11       1
+    10.242.119.59       1
+    10.242.159.102      2
+    10.251.34.206       1
+    10.251.35.51        1
+    127.0.0.1           6
+  Connections to local IP addresses
+    10.240.1.151        8
+    10.240.13.17        1
+    127.0.0.1           6
+  Connections to top 10 local ports
+    21064               1
+    22                  4
+    41000               1
+    41023               3
+    50422               1
+    50424               1
+    50426               1
+    51000               3
+  States of connections
+    ESTABLISHED        15
+    LISTEN             25
+    TIME_WAIT           2
+# Top Processes ##############################################
+   PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
+128028 db2inst1  20   0  218g 130g 130g S 106.3 51.8  65:30.73 db2sysc
+106285 root      20   0 16684 2848  828 R 12.2  0.0   0:00.13 top
+  2310 root       0 -20     0    0    0 S  1.7  0.0  85:58.67 USIImmediateWkq
+ 12915 root      19  -1  473m 2728 1612 S  1.7  0.0 108:33.85 rgmanager
+     1 root      20   0 19356 1388 1072 S  0.0  0.0   3:49.76 init
+     2 root      20   0     0    0    0 S  0.0  0.0   0:01.66 kthreadd
+     3 root      RT   0     0    0    0 S  0.0  0.0 160:31.64 migration/0
+     4 root      20   0     0    0    0 S  0.0  0.0  30:39.86 ksoftirqd/0
+     5 root      RT   0     0    0    0 S  0.0  0.0   0:00.00 migration/0
+# Custom Settings ############################################
+# RAID Controller ############################################
+  Controller | Hewlett-Packard Company Device 323c (rev 01)  
+# Block Device ID ############################################
+/dev/mapper/cshlwyhVG-db2actlog01LV: UUID="458034fb-9dd5-48fa-b680-4e0f983d7ae7" TYPE="ext4" 
+/dev/mapper/cshlwyhVG-db2actlog02LV: UUID="ba931295-5016-48b0-bc62-60861920cb70" TYPE="ext4" 
+/dev/mapper/cshlwyhVG-db2arch01LV: UUID="bcc2e622-a8bc-46e8-8bab-082596ce40e0" TYPE="ext4" 
+/dev/mapper/cshlwyhVG-db2arch02LV: UUID="c5d4d21b-4474-4b67-895b-2cb209bb807b" TYPE="ext4" 
+/dev/mapper/cshlwyhVG-db2data01LV: UUID="be09c274-b65c-44b6-8fd1-5e2c240ef4e9" TYPE="ext4" 
+/dev/mapper/cshlwyhVG-db2data02LV: UUID="3358d7de-35e8-42fa-8213-6ba24602d3d0" TYPE="ext4" 
+/dev/mapper/cshlwyhVG-db2homeLV: UUID="b746c540-996f-4246-96c2-96b0e0bad4a9" TYPE="ext4" 
+/dev/mapper/vg_db2-lv_db2data03: UUID="3a8d241f-282c-4bc7-9d09-519202a2f598" TYPE="ext4" 
+/dev/mapper/vg_root-db2LV: UUID="c6eba857-a4d4-47be-aa05-63a48375c54c" TYPE="ext4" 
+/dev/mapper/vg_root-lv_ceapp: UUID="45a81ba8-b31b-461d-8b0c-c651d4c81467" TYPE="ext4" 
+/dev/mapper/vg_root-lv_ibapp: UUID="0ed36cdf-7a68-40a5-ba1d-3f98165bfd1b" TYPE="ext4" 
+/dev/mapper/vg_root-lv_nbu65: UUID="8266dc3a-1fc3-4085-828e-30908943116d" TYPE="ext4" 
+/dev/mapper/vg_root-lv_patrol: UUID="bc26a4f4-93cb-4d5a-8f44-3aa49cd266e2" TYPE="ext4" 
+/dev/mapper/vg_root-lv_root: UUID="1d3bb0b2-decd-468c-8057-ac37d359b7b6" TYPE="ext4" 
+/dev/sda1: UUID="c7d80fef-9488-4eef-b01d-d9a8e180ed26" TYPE="ext4" 
+# Multipath Status ###########################################
+mpathe (36049fca1005242d91a16799a00000038) dm-17 up,updisk
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:1  sdf 8:80  active ready  running
+mpathd (364482e5100a35b214e6a5ce100000061) dm-16 up,updisk
+size=300G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:0:2  sde 8:64  active ready  running
+mpathp (36049fca1005242d92bef7473000000f1) dm-28 up,updisk
+size=500G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:9  sdp 8:240 active ready  running
+mpathc (364482e5100a35b214e6a3a0000000060) dm-15 up,updisk
+size=300G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:0:1  sdd 8:48  active ready  running
+mpatho (36049fca1005242d92bef887e000000f2) dm-27 up,updisk
+size=500G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:10 sdq 65:0  active ready  running
+mpathn (36049fca1005242d9e42e13bb00000059) dm-26 up,updisk
+size=500G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:6  sdm 8:192 active ready  running
+mpathm (36049fca1005242d9e42e34e60000005f) dm-25 up,updisk
+size=500G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:8  sdo 8:224 active ready  running
+mpathl (36049fca1005242d9e42e254b0000005b) dm-24 up,updisk
+size=500G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:7  sdn 8:208 active ready  running
+mpathk (36049fca1005242d9e42e028900000058) dm-23 up,updisk
+size=500G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:5  sdl 8:176 active ready  running
+mpathj (364482e5100a35b21e1233799000000ad) dm-22 up,updisk
+size=50G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:0:5  sdk 8:160 active ready  running
+mpathi (364482e5100a35b21de96da81000000ac) dm-21 up,updisk
+size=100G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:0:4  sdj 8:144 active ready  running
+mpathh (36049fca1005242d91a167a0e0000003b) dm-20 up,updisk
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:4  sdi 8:128 active ready  running
+mpathg (36049fca1005242d91a1679f00000003a) dm-19 up,updisk
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:3  sdh 8:112 active ready  running
+mpathf (36049fca1005242d91a1679ba00000039) dm-18 up,updisk
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  `- 3:0:1:2  sdg 8:96  active ready  running
+# HBA Info ###################################################
+
+  Class Device = "host1"
+  Class Device path = "/sys/devices/pci0000:80/0000:80:02.0/0000:84:00.0/host1/fc_host/host1"
+    active_fc4s         = "0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 "
+    dev_loss_tmo        = "60"
+    fabric_name         = "0x1000000533810400"
+    issue_lip           = <store method only>
+    max_npiv_vports     = "255"
+    maxframe_size       = "2048 bytes"
+    node_name           = "0x20000090fa74ed4c"
+    npiv_vports_inuse   = "0"
+    port_id             = "0x3c6700"
+    port_name           = "0x10000090fa74ed4c"
+    port_state          = "Online"
+    port_type           = "NPort (fabric via point-to-point)"
+    speed               = "4 Gbit"
+    supported_classes   = "Class 3"
+    supported_fc4s      = "0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 "
+    supported_speeds    = "2 Gbit, 4 Gbit, 8 Gbit"
+    symbolic_name       = "Emulex AJ762B/AH402A FV1.11A5 DV8.3.7.39"
+    tgtid_bind_type     = "wwpn (World Wide Port Name)"
+    uevent              = 
+    vport_create        = <store method only>
+    vport_delete        = <store method only>
+
+    Device = "host1"
+    Device path = "/sys/devices/pci0000:80/0000:80:02.0/0000:84:00.0/host1"
+      uevent              = "DEVTYPE=scsi_host"
+
+
+  Class Device = "host2"
+  Class Device path = "/sys/devices/pci0000:80/0000:80:02.2/0000:87:00.0/host2/fc_host/host2"
+    active_fc4s         = "0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 "
+    dev_loss_tmo        = "60"
+    fabric_name         = "0x1000000533593400"
+    issue_lip           = <store method only>
+    max_npiv_vports     = "255"
+    maxframe_size       = "2048 bytes"
+    node_name           = "0x20000090fa74e689"
+    npiv_vports_inuse   = "0"
+    port_id             = "0x3c3200"
+    port_name           = "0x10000090fa74e689"
+    port_state          = "Online"
+    port_type           = "NPort (fabric via point-to-point)"
+    speed               = "8 Gbit"
+    supported_classes   = "Class 3"
+    supported_fc4s      = "0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 "
+    supported_speeds    = "2 Gbit, 4 Gbit, 8 Gbit"
+    symbolic_name       = "Emulex AJ762B/AH402A FV1.11A5 DV8.3.7.39"
+    tgtid_bind_type     = "wwpn (World Wide Port Name)"
+    uevent              = 
+    vport_create        = <store method only>
+    vport_delete        = <store method only>
+
+    Device = "host2"
+    Device path = "/sys/devices/pci0000:80/0000:80:02.2/0000:87:00.0/host2"
+      uevent              = "DEVTYPE=scsi_host"
+
+
+# Local Resolution ###########################################
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.240.1.151	zjcshlwyhdb01.shbank.com	zjcshlwyhdb01
+
+10.240.13.17	cshlwyhdb01.shbank.com	cshlwyhdb01
+10.240.13.19	cshlwyhdb02.shbank.com	cshlwyhdb02
+
+10.240.13.18	fence01
+10.240.13.20	fence02
+10.240.101.11   nbusvr3
+10.240.2.67	teraserver
+# Network Route ##############################################
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.240.13.0     *               255.255.255.0   U     0      0        0 bond1
+10.240.1.0      *               255.255.255.0   U     0      0        0 bond0
+link-local      *               255.255.0.0     U     1014   0        0 bond0
+link-local      *               255.255.0.0     U     1015   0        0 bond1
+default         10.240.1.254    0.0.0.0         UG    0      0        0 bond0
+# Network Config #############################################
+- bond0 ---------------------------------------
+bond0     Link encap:Ethernet  HWaddr 40:A8:F0:24:A2:3C  
+          inet addr:10.240.1.151  Bcast:10.240.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::42a8:f0ff:fe24:a23c/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:56321486324 errors:0 dropped:254079 overruns:0 frame:0
+          TX packets:67870138167 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:39261548663575 (35.7 TiB)  TX bytes:59910351152425 (54.4 TiB)
+
+bond0-	Link detected: yes
+- bond0 configfile ----------------------------
+DEVICE=bond0
+BOOTPROTO=none
+IPV6INIT=no
+ONBOOT=yes
+TYPE=Ethernet
+NETMASK=255.255.255.0
+IPADDR=10.240.1.151
+GATEWAY=10.240.1.254
+USERCTL=no
+BONDING_OPTS="mode=1 miimon=100 primary=eth0"
+- bond1 ---------------------------------------
+bond1     Link encap:Ethernet  HWaddr 40:A8:F0:24:A2:3E  
+          inet addr:10.240.13.17  Bcast:10.240.13.255  Mask:255.255.255.0
+          inet6 addr: fe80::42a8:f0ff:fe24:a23e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:372540254 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:52805126 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:99936428375 (93.0 GiB)  TX bytes:8131460148 (7.5 GiB)
+
+bond1-	Link detected: yes
+- bond1 configfile ----------------------------
+DEVICE=bond1
+BOOTPROTO=none
+IPV6INIT=no
+ONBOOT=yes
+TYPE=Ethernet
+NETMASK=255.255.255.0
+IPADDR=10.240.13.17
+USERCTL=no
+BONDING_OPTS="mode=1 miimon=100 primary=eth2"
+- eth0 ----------------------------------------
+eth0      Link encap:Ethernet  HWaddr 40:A8:F0:24:A2:3C  
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:56074928065 errors:0 dropped:250437 overruns:0 frame:0
+          TX packets:67870137662 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:39225094471625 (35.6 TiB)  TX bytes:59910350986453 (54.4 TiB)
+          Interrupt:16 
+
+eth0-	Link detected: yes
+- eth0 configfile -----------------------------
+DEVICE=eth0
+BOOTPROTO=none
+MASTER=bond0
+SLAVE=yes
+HWADDR="40:A8:F0:24:A2:3C"
+IPV6INIT=no
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+- eth1 ----------------------------------------
+eth1      Link encap:Ethernet  HWaddr 40:A8:F0:24:A2:3C  
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:246558259 errors:0 dropped:3642 overruns:0 frame:0
+          TX packets:505 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:36454191950 (33.9 GiB)  TX bytes:165972 (162.0 KiB)
+          Interrupt:17 
+
+eth1-	Link detected: yes
+- eth1 configfile -----------------------------
+DEVICE=eth1
+BOOTPROTO=none
+MASTER=bond0
+SLAVE=yes
+HWADDR="40:A8:F0:24:A2:3D"
+IPV6INIT=no
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+- eth2 ----------------------------------------
+eth2      Link encap:Ethernet  HWaddr 40:A8:F0:24:A2:3E  
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:200150237 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:52804408 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:51966021924 (48.3 GiB)  TX bytes:8131361797 (7.5 GiB)
+          Interrupt:16 
+
+eth2-	Link detected: yes
+- eth2 configfile -----------------------------
+DEVICE=eth2
+BOOTPROTO=none
+MASTER=bond1
+SLAVE=yes
+IPV6INIT=no
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+- eth3 ----------------------------------------
+eth3      Link encap:Ethernet  HWaddr 40:A8:F0:24:A2:3E  
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:172390017 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:718 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:47970406451 (44.6 GiB)  TX bytes:98351 (96.0 KiB)
+          Interrupt:17 
+
+eth3-	Link detected: yes
+- eth3 configfile -----------------------------
+DEVICE=eth3
+BOOTPROTO=none
+MASTER=bond1
+SLAVE=yes
+IPV6INIT=no
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+- bond0 status --------------------------------
+Ethernet Channel Bonding Driver: v3.6.0 (September 26, 2009)
+
+Bonding Mode: fault-tolerance (active-backup)
+Primary Slave: eth0 (primary_reselect always)
+Currently Active Slave: eth0
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: eth0
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 1
+Permanent HW addr: 40:a8:f0:24:a2:3c
+Slave queue ID: 0
+
+Slave Interface: eth1
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 1
+Permanent HW addr: 40:a8:f0:24:a2:3d
+Slave queue ID: 0
+- bond1 status --------------------------------
+Ethernet Channel Bonding Driver: v3.6.0 (September 26, 2009)
+
+Bonding Mode: fault-tolerance (active-backup)
+Primary Slave: eth2 (primary_reselect always)
+Currently Active Slave: eth2
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: eth2
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 1
+Permanent HW addr: 40:a8:f0:24:a2:3e
+Slave queue ID: 0
+
+Slave Interface: eth3
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 1
+Permanent HW addr: 40:a8:f0:24:a2:3f
+Slave queue ID: 0
+# Common Users ###############################################
+    account    :  UID   :  GID   :    HOME directory    :   shell      
+  root            0        0        /root                  /bin/bash     
+  bin             1        1        /bin                   /sbin/nologin 
+  daemon          2        2        /sbin                  /sbin/nologin 
+  adm             3        4        /var/adm               /sbin/nologin 
+  lp              4        7        /var/spool/lpd         /sbin/nologin 
+  sync            5        0        /sbin                  /bin/sync     
+  shutdown        6        0        /sbin                  /sbin/shutdown
+  halt            7        0        /sbin                  /sbin/halt    
+  mail            8        12       /var/spool/mail        /sbin/nologin 
+  uucp            10       14       /var/spool/uucp        /sbin/nologin 
+  operator        11       0        /root                  /sbin/nologin 
+  games           12       100      /usr/games             /sbin/nologin 
+  gopher          13       30       /var/gopher            /sbin/nologin 
+  ftp             14       50       /var/ftp               /sbin/nologin 
+  nobody          99       99       /                      /sbin/nologin 
+  dbus            81       81       /                      /sbin/nologin 
+  usbmuxd         113      113      /                      /sbin/nologin 
+  rpc             32       32       /var/cache/rpcbind     /sbin/nologin 
+  vcsa            69       69       /dev                   /sbin/nologin 
+  rtkit           499      497      /proc                  /sbin/nologin 
+  abrt            173      173      /etc/abrt              /sbin/nologin 
+  avahi-autoipd   170      170      /var/lib/avahi-autoipd /sbin/nologin 
+  saslauth        498      76       /var/empty/saslauth    /sbin/nologin 
+  postfix         89       89       /var/spool/postfix     /sbin/nologin 
+  rpcuser         29       29       /var/lib/nfs           /sbin/nologin 
+  nfsnobody       65534    65534    /var/lib/nfs           /sbin/nologin 
+  haldaemon       68       68       /                      /sbin/nologin 
+  gdm             42       42       /var/lib/gdm           /sbin/nologin 
+  ntp             38       38       /etc/ntp               /sbin/nologin 
+  apache          48       48       /var/www               /sbin/nologin 
+  pulse           497      496      /var/run/pulse         /sbin/nologin 
+  sshd            74       74       /var/empty/sshd        /sbin/nologin 
+  tcpdump         72       72       /                      /sbin/nologin 
+  oprofile        16       16       /home/oprofile         /sbin/nologin 
+  check           371      371      /home/check            /bin/ksh      
+  patrol          769      769      /patrol                /bin/bash     
+  hpsmh           770      770      /opt/hp/hpsmh          /sbin/nologin 
+  ricci           140      140      /var/lib/ricci         /sbin/nologin 
+  luci            141      141      /var/lib/luci          /sbin/nologin 
+  db2inst1        1101     601      /home/db2inst1         /bin/bash     
+  ibapp           1187     1187     /ibapp                 /bin/bash     
+  llmapp          1213     601      /home/llmapp           /bin/bash     
+  db2fenc         1102     602      /home/db2fenc          /bin/bash     
+  db2inst2        1103     601      /home/db2inst2         /bin/bash     
+  ceapp           1554     1554     /ceapp                 /bin/bash     
+# Users groupinfo ############################################
+ uid=0(root)               gid=0(root)               groups=0(root)                          
+ uid=1(bin)                gid=1(bin)                groups=1(bin),2(daemon),3(sys)          
+ uid=2(daemon)             gid=2(daemon)             groups=2(daemon),1(bin),4(adm),7(lp)    
+ uid=3(adm)                gid=4(adm)                groups=4(adm),3(sys)                    
+ uid=4(lp)                 gid=7(lp)                 groups=7(lp)                            
+ uid=5(sync)               gid=0(root)               groups=0(root)                          
+ uid=6(shutdown)           gid=0(root)               groups=0(root)                          
+ uid=7(halt)               gid=0(root)               groups=0(root)                          
+ uid=8(mail)               gid=12(mail)              groups=12(mail)                         
+ uid=10(uucp)              gid=14(uucp)              groups=14(uucp)                         
+ uid=11(operator)          gid=0(root)               groups=0(root)                          
+ uid=12(games)             gid=100(users)            groups=100(users)                       
+ uid=13(gopher)            gid=30(gopher)            groups=30(gopher)                       
+ uid=14(ftp)               gid=50(ftp)               groups=50(ftp)                          
+ uid=99(nobody)            gid=99(nobody)            groups=99(nobody)                       
+ uid=81(dbus)              gid=81(dbus)              groups=81(dbus)                         
+ uid=113(usbmuxd)          gid=113(usbmuxd)          groups=113(usbmuxd)                     
+ uid=32(rpc)               gid=32(rpc)               groups=32(rpc)                          
+ uid=69(vcsa)              gid=69(vcsa)              groups=69(vcsa)                         
+ uid=499(rtkit)            gid=497(rtkit)            groups=497(rtkit)                       
+ uid=173(abrt)             gid=173(abrt)             groups=173(abrt)                        
+ uid=170(avahi-autoipd)    gid=170(avahi-autoipd)    groups=170(avahi-autoipd)               
+ uid=498(saslauth)         gid=76(saslauth)          groups=76(saslauth)                     
+ uid=89(postfix)           gid=89(postfix)           groups=89(postfix),12(mail)             
+ uid=29(rpcuser)           gid=29(rpcuser)           groups=29(rpcuser)                      
+ uid=65534(nfsnobody)      gid=65534(nfsnobody)      groups=65534(nfsnobody)                 
+ uid=68(haldaemon)         gid=68(haldaemon)         groups=68(haldaemon)                    
+ uid=42(gdm)               gid=42(gdm)               groups=42(gdm)                          
+ uid=38(ntp)               gid=38(ntp)               groups=38(ntp)                          
+ uid=48(apache)            gid=48(apache)            groups=48(apache)                       
+ uid=497(pulse)            gid=496(pulse)            groups=496(pulse)                       
+ uid=74(sshd)              gid=74(sshd)              groups=74(sshd)                         
+ uid=72(tcpdump)           gid=72(tcpdump)           groups=72(tcpdump)                      
+ uid=16(oprofile)          gid=16(oprofile)          groups=16(oprofile)                     
+ uid=371(check)            gid=371(check)            groups=371(check)                       
+ uid=769(patrol)           gid=769(patrol)           groups=769(patrol)                      
+ uid=770(hpsmh)            gid=770(hpsmh)            groups=770(hpsmh)                       
+ uid=140(ricci)            gid=140(ricci)            groups=140(ricci)                       
+ uid=141(luci)             gid=141(luci)             groups=141(luci)                        
+ uid=1101(db2inst1)        gid=601(db2adm)           groups=601(db2adm)                      
+ uid=1187(ibapp)           gid=1187(ibapp)           groups=1187(ibapp)                      
+ uid=1213(llmapp)          gid=601(db2adm)           groups=601(db2adm)                      
+ uid=1102(db2fenc)         gid=602(db2fgrp)          groups=602(db2fgrp)                     
+ uid=1103(db2inst2)        gid=601(db2adm)           groups=601(db2adm)                      
+ uid=1554(ceapp)           gid=1554(ceapp)           groups=1554(ceapp)                      
+# Iptables ###################################################
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+# NTP status #################################################
+ntpd (pid  9237) is running...
+
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++160.0.2.150     .LCK.            1 u  828 1024  377    1.033    5.639   0.022
+*160.0.2.151     .LCK.            1 u  857 1024  377    1.530   -3.013   1.573
+ 172.222.38.150  .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+
+server 160.0.2.150
+server 160.0.2.151 
+server 172.222.38.150
+# Root crontab ###############################################
+*/30 * * * * /sbin/pam_tally2 -r -u root
+*/30 * * * * /sbin/pam_tally2 -r -u check
+30 3 * * 4 /root/bsg-summary-shbank
+*/1 * * * * /bin/bash /root/cpulog
+
+# Security Police ############################################
+PASS_MAX_DAYS	90
+PASS_MIN_DAYS	0
+PASS_MIN_LEN	8
+PASS_WARN_AGE	60
+
+auth	    required	  pam_tally2.so  onerr=fail  deny=6
+auth        sufficient    pam_unix.so nullok try_first_pass
+account     required      pam_unix.so
+password    requisite     pam_cracklib.so try_first_pass retry=3 minlen=8 lcredit=-1 ucredit=-1 dcredit=-1 ocredit=-1 type=
+password    sufficient    pam_unix.so sha512 shadow remember=3 nullok try_first_pass use_authtok
+session     required      pam_unix.so
+
+auth	    required	  pam_tally2.so  onerr=fail  deny=6
+auth        sufficient    pam_unix.so nullok try_first_pass
+account     required      pam_unix.so
+password    requisite     pam_cracklib.so try_first_pass retry=3 minlen=8 lcredit=-1 ucredit=-1 dcredit=-1 ocredit=-1 type=
+password    sufficient    pam_unix.so sha512 shadow remember=3 nullok try_first_pass use_authtok
+session     required      pam_unix.so
+
+umask 027
+umask 027
+TMOUT=300
+# Services status ############################################
+-------------SERVICE abrt-ccpp-------------
+abrt-ccpp hook is installed
+--------------------------------------
+-------------SERVICE abrtd-------------
+abrtd (pid  9352) is running...
+--------------------------------------
+-------------SERVICE atd-------------
+atd (pid  11449) is running...
+--------------------------------------
+-------------SERVICE auditd-------------
+auditd (pid  15202) is running...
+--------------------------------------
+-------------SERVICE autofs-------------
+automount (pid  9200) is running...
+--------------------------------------
+-------------SERVICE blk-availability-------------
+--------------------------------------
+-------------SERVICE certmonger-------------
+certmonger (pid  11508) is running...
+--------------------------------------
+-------------SERVICE cpuspeed-------------
+Frequency scaling enabled using ondemand governor
+--------------------------------------
+-------------SERVICE crond-------------
+crond (pid  9423) is running...
+--------------------------------------
+-------------SERVICE firstboot-------------
+firstboot is not scheduled to run
+--------------------------------------
+-------------SERVICE haldaemon-------------
+hald (pid  9133) is running...
+--------------------------------------
+-------------SERVICE hp-ams-------------
+hpHelper is running...
+--------------------------------------
+-------------SERVICE hp-asrd-------------
+9599 9598
+Running[60G[[0;32m  OK  [0;39m]
+--------------------------------------
+-------------SERVICE hp-health-------------
+  Using Proliant Standard
+ 	IPMI based System Health Monitor
+  
+  (hpasmlited) is running...[60G[[0;32m  OK  [0;39m]  
+--------------------------------------
+-------------SERVICE hp-snmp-agents-------------
+  
+  cmahealthd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmastdeqd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmahostd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmathreshd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmasm2d is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmaperfd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmapeerd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmaeventd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmafcad is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmasasd is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmaidad is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmaided is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmascsid is running...[60G[[0;32m  OK  [0;39m]  
+  
+  cmanicd is running...[60G[[0;32m  OK  [0;39m]
+--------------------------------------
+-------------SERVICE hpsmhd-------------
+hpsmhd (pid 115713 114487 9442 9441 9440 9439 9438 9413) is running...
+--------------------------------------
+-------------SERVICE irqbalance-------------
+irqbalance (pid 7587) is running...
+--------------------------------------
+-------------SERVICE iscsi-------------
+iscsi is stopped
+--------------------------------------
+-------------SERVICE iscsid-------------
+iscsid is stopped
+--------------------------------------
+-------------SERVICE kdump-------------
+Kdump is operational
+--------------------------------------
+-------------SERVICE libvirt-guests-------------
+started
+--------------------------------------
+-------------SERVICE lldpad-------------
+lldpad (pid  8983) is running...
+--------------------------------------
+-------------SERVICE lvm2-monitor-------------
+--------------------------------------
+-------------SERVICE mdmonitor-------------
+mdmonitor is stopped
+--------------------------------------
+-------------SERVICE messagebus-------------
+messagebus (pid  9004) is running...
+--------------------------------------
+-------------SERVICE multipathd-------------
+multipathd (pid  103906) is running...
+--------------------------------------
+-------------SERVICE netbackup-------------
+usage: /etc/init.d/netbackup { start | stop | start_msg | stop_msg }
+--------------------------------------
+-------------SERVICE netfs-------------
+--------------------------------------
+-------------SERVICE network-------------
+Configured devices:
+lo bond0 bond1 eth0 eth1 eth2 eth3 eth4 eth5 eth6 eth7 eth8 eth9 eth10 eth11
+Currently active devices:
+lo eth0 eth1 eth2 eth3 bond0 bond1
+--------------------------------------
+-------------SERVICE ntpd-------------
+ntpd (pid  9237) is running...
+--------------------------------------
+-------------SERVICE nxup-------------
+Useage: /etc/init.d/nxup start|stop
+--------------------------------------
+-------------SERVICE ocsbbd-------------
+ocsbbd dead but subsys locked
+--------------------------------------
+-------------SERVICE portreserve-------------
+portreserve (pid  7459) is running...
+--------------------------------------
+-------------SERVICE postfix-------------
+master (pid  9328) is running...
+--------------------------------------
+-------------SERVICE rhsmcertd-------------
+rhsmcertd (pid 11463) is running...
+--------------------------------------
+-------------SERVICE rpcbind-------------
+rpcbind (pid  7606) is running...
+--------------------------------------
+-------------SERVICE rpcgssd-------------
+rpc.gssd is stopped
+--------------------------------------
+-------------SERVICE rpcidmapd-------------
+rpc.idmapd (pid 9105) is running...
+--------------------------------------
+-------------SERVICE rsyslog-------------
+rsyslogd (pid  7475) is running...
+--------------------------------------
+-------------SERVICE snmpd-------------
+snmpd (pid 9217) is running...
+--------------------------------------
+-------------SERVICE sshd-------------
+openssh-daemon (pid  9229) is running...
+--------------------------------------
+-------------SERVICE sysstat-------------
+--------------------------------------
+-------------SERVICE tg3sd-------------
+/usr/sbin/tg3sd is running, pid=8993
+--------------------------------------
+-------------SERVICE udev-post-------------
+--------------------------------------
+-------------SERVICE vsftpd-------------
+vsftpd (pid 9248) is running...
+--------------------------------------
+-------------SERVICE vxpbx_exchanged-------------
+Symantec Private Branch Exchange is running
+--------------------------------------
+# Chkconfig list #############################################
+abrt-ccpp      	0:off	1:off	2:off	3:on	4:off	5:on	6:off
+abrtd          	0:off	1:off	2:off	3:on	4:off	5:on	6:off
+atd            	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+auditd         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+autofs         	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+blk-availability	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+certmonger     	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+cpuspeed       	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+crond          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+firstboot      	0:off	1:off	2:off	3:on	4:off	5:on	6:off
+haldaemon      	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+hp-ams         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+hp-asrd        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+hp-health      	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+hp-snmp-agents 	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+hpsmhd         	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+irqbalance     	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+iscsi          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+iscsid         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+kdump          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+libvirt-guests 	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+lldpad         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+lvm2-monitor   	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+mdmonitor      	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+messagebus     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+multipathd     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+netbackup      	0:off	1:off	2:on	3:on	4:off	5:on	6:off
+netfs          	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+network        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+ntpd           	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+nxup           	0:off	1:off	2:off	3:on	4:off	5:on	6:off
+ocsbbd         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+portreserve    	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+postfix        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+rhsmcertd      	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+rpcbind        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+rpcgssd        	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+rpcidmapd      	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+rsyslog        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+snmpd          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+sshd           	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+sysstat        	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+tg3sd          	0:off	1:off	2:on	3:on	4:off	5:on	6:off
+udev-post      	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+vsftpd         	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+vxpbx_exchanged	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+# Services settings ##########################################
+- snmpd ---------------------------------------
+OPTIONS="-Lf /var/log/snmpd.log"
+- sshd ----------------------------------------
+PermitRootLogin no
+- logrotate -----------------------------------
+rotate 25
+compress
+# YUM ########################################################
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
+repo id                    repo name                                      status
+rhel-Cluster               Red Hat Enterprise Linux Cluster                 56
+rhel-Server                Red Hat Enterprise Linux Server                3648
+repolist: 3704
+# RHCS #######################################################
+Cluster Status for cshlwyhdb @ Thu Sep 14 17:09:46 2017
+Member Status: Quorate
+
+ Member Name                             ID   Status
+ ------ ----                             ---- ------
+ cshlwyhdb01                                 1 Online, Local, rgmanager
+ cshlwyhdb02                                 2 Online, rgmanager
+
+ Service Name                   Owner (Last)                   State         
+ ------- ----                   ----- ------                   -----         
+ service:ZJcshlwyhdb            cshlwyhdb01                    started       
+- RHCS config ---------------------------------
+<?xml version="1.0"?>
+<cluster config_version="20" name="cshlwyhdb">
+	<clusternodes>
+		<clusternode name="cshlwyhdb01" nodeid="1">
+			<fence>
+				<method name="Method">
+					<device name="fence1"/>
+				</method>
+			</fence>
+		</clusternode>
+		<clusternode name="cshlwyhdb02" nodeid="2">
+			<fence>
+				<method name="Method">
+					<device name="fence2"/>
+				</method>
+			</fence>
+		</clusternode>
+	</clusternodes>
+	<cman expected_votes="1" transport="udpu" two_node="1"/>
+	<fencedevices>
+		<fencedevice agent="fence_ipmilan" ipaddr="fence01" lanplus="on" login="fence" name="fence1" passwd="abcd1234"/>
+		<fencedevice agent="fence_ipmilan" ipaddr="fence02" lanplus="on" login="fenceadmin" name="fence2" passwd="fenceadmin"/>
+	</fencedevices>
+	<rm>
+		<failoverdomains>
+			<failoverdomain name="cshlwyhdb">
+				<failoverdomainnode name="cshlwyhdb01"/>
+				<failoverdomainnode name="cshlwyhdb02"/>
+			</failoverdomain>
+		</failoverdomains>
+		<resources>
+			<ip address="10.240.1.150" sleeptime="10"/>
+			<fs device="/dev/cshlwyhVG/db2homeLV" force_unmount="1" fsid="8691" fstype="ext4" mountpoint="/db2home" name="db2home" self_fence="1"/>
+			<fs device="/dev/cshlwyhVG/db2arch01LV" force_unmount="1" fsid="19543" fstype="ext4" mountpoint="/db2arch01" name="db2arch01" self_fence="1"/>
+			<fs device="/dev/cshlwyhVG/db2arch02LV" force_unmount="1" fsid="7661" fstype="ext4" mountpoint="/db2arch02" name="db2arch02" self_fence="1"/>
+			<fs device="/dev/cshlwyhVG/db2data01LV" force_unmount="1" fsid="25631" fstype="ext4" mountpoint="/db2data01" name="db2data01" self_fence="1"/>
+			<fs device="/dev/cshlwyhVG/db2data02LV" force_unmount="1" fsid="13733" fstype="ext4" mountpoint="/db2data02" name="db2data02" self_fence="1"/>
+			<fs device="/dev/cshlwyhVG/db2actlog01LV" force_unmount="1" fsid="18352" fstype="ext4" mountpoint="/db2actlog01" name="db2actlog01" self_fence="1"/>
+			<fs device="/dev/cshlwyhVG/db2actlog02LV" force_unmount="1" fsid="5642" fstype="ext4" mountpoint="/db2actlog02" name="db2actlog02" self_fence="1"/>
+		</resources>
+		<service domain="cshlwyhdb" name="ZJcshlwyhdb" recovery="relocate">
+			<ip ref="10.240.1.150"/>
+			<fs ref="db2home"/>
+			<fs ref="db2arch01"/>
+			<fs ref="db2arch02"/>
+			<fs ref="db2data01"/>
+			<fs ref="db2data02"/>
+			<fs ref="db2actlog01"/>
+			<fs ref="db2actlog02"/>
+		</service>
+	</rm>
+</cluster>
+
+cman           	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+rgmanager      	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+- rc.local ------------------------------------
+touch /var/lock/subsys/local
+/etc/init.d/cman start
+/etc/init.d/rgmanager start
+# errlog #####################################################
+- messages ------------------------------------
+No error logs in system log
+- secure --------------------------------------
+Sep 13 15:23:53 zjcshlwyhdb01 sshd[117866]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.251.35.131  user=ibapp
+Sep 13 15:23:55 zjcshlwyhdb01 sshd[117866]: Failed password for ibapp from 10.251.35.131 port 52340 ssh2
+Sep 13 15:23:57 zjcshlwyhdb01 sshd[117866]: Failed password for ibapp from 10.251.35.131 port 52340 ssh2
+Sep 14 15:57:42 zjcshlwyhdb01 su: pam_unix(su-l:auth): authentication failure; logname=check uid=371 euid=0 tty=pts/3 ruser=check rhost=  user=root
+Sep 14 15:57:49 zjcshlwyhdb01 su: pam_unix(su-l:auth): authentication failure; logname=check uid=371 euid=0 tty=pts/3 ruser=check rhost=  user=root
+Sep 14 15:58:32 zjcshlwyhdb01 sshd[99788]: Failed password for check from 10.242.159.102 port 62089 ssh2
+Sep 14 15:58:36 zjcshlwyhdb01 sshd[99788]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.242.159.102  user=check
+Sep 14 15:58:37 zjcshlwyhdb01 sshd[99788]: Failed password for check from 10.242.159.102 port 62089 ssh2
+Sep 14 15:58:55 zjcshlwyhdb01 sshd[103290]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.242.159.102  user=check
+Sep 14 15:58:57 zjcshlwyhdb01 sshd[103290]: Failed password for check from 10.242.159.102 port 62095 ssh2
+Sep 14 15:59:17 zjcshlwyhdb01 su: pam_unix(su-l:auth): authentication failure; logname=check uid=371 euid=0 tty=pts/4 ruser=check rhost=  user=root
+Sep 14 15:59:35 zjcshlwyhdb01 su: pam_unix(su-l:auth): authentication failure; logname=check uid=371 euid=0 tty=pts/4 ruser=check rhost=  user=root
+# The End ####################################################
