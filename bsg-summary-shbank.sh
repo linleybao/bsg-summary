@@ -1,7 +1,7 @@
 #!/bin/bash
-# bsg-summary-shbank for RHEL5
-# Modified on 2014/05/13
-# version 2.2.1 (1.0.10)
+# bsg-summary-shbank for RHEL5 & RHEL6 & RHEL7
+# Modified on 2017/10/13
+# version 2.2.1 (1.1.0)
 
 set -u
 
@@ -2028,6 +2028,9 @@ parse_uptime () {
 
 custom_settings (){ local BSGFUNCNAME=custom_settings;
    local data_dir="$1"
+   local kernel=$(get_var "kernel" "${data_dir}/summary")
+   local kernel_main_version=$(echo ${kernel} | awk -F'.el' '{print $2}' | cut -b 1)
+
    section "Custom Settings"
 
    section "RAID Controller"
@@ -2083,8 +2086,7 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
    route -v
 
    section "Network Config" 
-   local Netdev=`ifconfig | grep -E '^e|^b' | awk '{print $1}'`
-   for i in ${Netdev}
+   for i in $(ls /sys/class/net)
    do
       subsection "$i" 
       ifconfig ${i}
@@ -2118,64 +2120,87 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
    iptables -L -n 
 
    section "NTP status" 
-   service ntpd status 2>&1
-   echo ""
-   ntpq -p 2>&1
-   echo ""
-   grep -E "^server" /etc/ntp.conf 2>&1
    
+   if [ ${kernel_main_version} -lt 7 ]; then
+      service ntpd status 2>&1
+      echo ""
+      ntpq -p 2>&1
+      echo ""
+      grep -E "^server" /etc/ntp.conf 2>&1
+   else
+      systemctl status chronyd 2>&1
+      echo ""
+      chronyc sources
+      echo ""
+      grep -E "^server" /etc/chrony.conf 2>&1
+   fi
+
    section "Root crontab" 
    crontab -l 2>&1
    
    section "Security Police" 
-   grep -E '^PASS' /etc/login.defs
-   echo ""
-
-   grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/system-auth 
-   echo ""
-
-   grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/password-auth
-   echo ""
-
-   if [ `uname -r` == "2.6.18-308.el5" ]
-   then {
-      grep umask /etc/profile | grep -Ev '#' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'  
-   }
-   else {
-      grep umask /etc/bashrc | grep -Ev '#' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'
-   }     
+   if [ ${kernel_main_version} -eq 5 ]; then
+      grep -E '^PASS' /etc/login.defs
+      echo ""
+      grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/system-auth-ac
+      echo ""
+   elif [ ${kernel_main_version} -eq 6 ]; then
+      grep -E '^PASS' /etc/login.defs
+      echo ""
+      grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/system-auth-ac
+      echo ""
+      grep -E 'pam_tally|pam_cracklib|pam_unix' /etc/pam.d/password-auth-ac
+      echo ""
+   elif [ ${kernel_main_version} -eq 7 ]; then
+      grep -E 'pam_tally|pam_pwquality|pam_unix' /etc/pam.d/system-auth-ac
+      echo ""
+      grep -E 'pam_tally|pam_pwquality|pam_unix' /etc/pam.d/password-auth-ac
+      echo ""
+      grep -E 'minlen' /etc/security/pwquality.conf | grep -v -E "#"
    fi
+
+   unset POSIXLY_CORRECT
+   grep umask /etc/profile | grep -Ev '#' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'
+   grep umask /etc/bashrc | grep -Ev '#' | sed 's/^[ \t]*//g' | sed 's/[ \t]*$//g'
+   export POSIXLY_CORRECT
+
    local tmout="$(grep TMOUT /etc/profile)"
    echo "${tmout:-No setting TMOUT}"
 
+   grep -E "^*" /etc/security/limits.conf | grep  -E "nproc|nofile" | grep -v "#"
+   grep -E "^*" /etc/security/limits.d/90-nproc.conf 2>/dev/null | grep  -E "nproc|nofile" | grep -v "#"
+   grep -E "^*" /etc/security/limits.d/20-nproc.conf 2>/dev/null | grep  -E "nproc|nofile" | grep -v "#"
+   echo ""
+
    section "Services status" 
-   #local ntp="$(/etc/init.d/ntpd status 2>/dev/null)"
-   #echo "${ntp:-Not install ntpd }"  
-   #local snmpd="$(/etc/init.d/snmpd status 2>/dev/null)"
-   #echo "${snmpd:-Not install snmpd}"  
-   #local hphealth="$(/etc/init.d/hp-health status 2>/dev/null)"
-   #echo "${hphealth:-Not install hp-health}"  
-   #local hpilo="$(/etc/init.d/hp-ilo status 2>/dev/null)"
-   #echo "${hpilo:-Not install hp-ilo}"  
-   #local hpsnmp="$(/etc/init.d/hp-snmp-agents status 2>/dev/null)"
-   #echo "${hpsnmp:-Not install hp-snmp-agents}"  
-   #local hpsmhd="$(/etc/init.d/hpsmhd status 2>/dev/null)"
-   #echo "${hpsmhd:-Not install hpsmhd}"  
-   #if /opt/OV/bin/ovc -status >/dev/null 2>&1; then
-   #OVO="$(/opt/OV/bin/ovc )"
-   #fi 
-   #echo "${OVO:-Not install OVO agent}" 
-   for srv in `chkconfig --list| grep -E "3:on" | grep -E "5:on"| awk '{print $1}'`
-   do
-      echo "-------------SERVICE $srv-------------"
-      service $srv status
-      echo "--------------------------------------"
-   done
    
+   if [ ${kernel_main_version} -lt 7 ]; then
+      chkconfig --list| grep -E "3:on" | grep -E "5:on"| awk '{print $1}' | while read srv
+      do
+         echo "-------------SERVICE $srv-------------"
+         service ${srv} status
+         echo "--------------------------------------"
+      done
+   else
+      unset POSIXLY_CORRECT
+      systemctl --no-legend list-unit-files --state=enabled --type=service | grep -v "@" | awk '{print $1}' | while read srv
+      do
+         echo "-------------SERVICE $srv-------------"
+         systemctl status $srv
+         echo "--------------------------------------"
+      done
+      export POSIXLY_CORRECT
+   fi
 
    section "Chkconfig list" 
    #chkconfig --list | grep -E 'ntpd|snmpd|iptables|hp-health|hp-ilo|hp-snmp-agents|hpsmhd'
-   chkconfig --list| grep -E "3:on" | grep -E "5:on"
+   if [ ${kernel_main_version} -lt 7 ]; then
+      chkconfig --list | grep -E "3:on" | grep -E "5:on"
+   else
+      unset POSIXLY_CORRECT
+      systemctl --no-legend list-unit-files --state=enabled --type=service | awk '{print $1}'
+      export POSIXLY_CORRECT
+   fi
    
    section "Services settings" 
 
@@ -2190,7 +2215,12 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
 
    subsection "logrotate" 
    grep -E '^rotate|^compress' /etc/logrotate.conf | grep -Ev '^#' 
-   
+   if [ ${kernel_main_version} -eq 5 ]; then
+      grep "\*.debug" /etc/syslog.conf
+   else
+      grep "\*.debug" /etc/rsyslog.conf
+   fi
+
    section "YUM" 
    yum repolist 2>&1
    
