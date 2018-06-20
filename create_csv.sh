@@ -2,6 +2,8 @@
 ##version 0.0.8 
 ##date 2016年 8月 3日 星期三 13时44分17秒 CST
 
+set -u
+
 check_details (){
 	local s_file=/tmp/check.tmp
 	local d_file=$1
