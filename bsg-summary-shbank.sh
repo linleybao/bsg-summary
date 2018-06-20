@@ -567,6 +567,7 @@ set -u
 
 CMD_FILE="$( _which file 2>/dev/null )"
 CMD_NM="$( _which nm 2>/dev/null )"
+CMD_TAR="$( _which tar 2>/dev/null )"
 CMD_OBJDUMP="$( _which objdump 2>/dev/null )"
 
 get_nice_of_pid () {
@@ -2257,6 +2258,11 @@ custom_settings (){ local BSGFUNCNAME=custom_settings;
 
 }
 
+save_logs () { local BSGFUNCNAME=save_logs;
+   local save_file="$1"
+   CMD_TAR -C /var/log -zcf ${save_file} messages
+
+}
 
 report_system_summary () { local BSGFUNCNAME=report_system_summary;
    local data_dir="$1"
@@ -2400,8 +2406,9 @@ main () { local BSGFUNCNAME=main;
    local hostname=$HOSTNAME
    local ipdev=${IP_DEV}
    local ip_addr=${IP_ADDR}
+   local outdir="/tmp"
    local outfile="L-${hostname}-${ip_addr}-${date}.txt"
-   local msgfile="L-${hostname}-${ip_addr}-${date}.messages"
+   local log_tar_file="${outdir}/L-${hostname}-${ip_addr}-${date}.messages.tar.gz"
 
    setup_commands
 
@@ -2418,21 +2425,9 @@ main () { local BSGFUNCNAME=main;
       collect_system_data "$data_dir" 2>"$data_dir/collect.err"
    fi
 
-   report_system_summary "$data_dir" >> /tmp/${outfile}
+   report_system_summary "$data_dir" >> ${outdir}/${outfile}
 
-   cp /var/log/messages /tmp/${msgfile}
-
-   local ftp_server1='48.1.1.123'
-   local ftp_usr1="bospcserver"
-   local ftp_pwd1="Abcd123$"
-   ftp_upload ${ftp_server1} ${ftp_usr1} ${ftp_pwd1} ${outfile}
-   ftp_upload ${ftp_server1} ${ftp_usr1} ${ftp_pwd1} ${msgfile}
-
-   local ftp_server2='48.1.1.124'
-   local ftp_usr2="bospcserver"
-   local ftp_pwd2="Abcd123$"
-   ftp_upload ${ftp_server2} ${ftp_usr2} ${ftp_pwd2} ${outfile}
-   ftp_upload ${ftp_server2} ${ftp_usr2} ${ftp_pwd2} ${msgfile}
+   save_logs "$log_tar_file"
 
    rm_tmpdir
 }
